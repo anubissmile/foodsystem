@@ -32,8 +32,6 @@ class UsersTableSeeder extends Seeder{
         	'USERNAME' => 'admin',
         	'EMAIL' => 'wesarut.khm@gmail.com',
         	'PASSWORD' => bcrypt('1234'),
-
-
 		]);
 	}
 }
