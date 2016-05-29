@@ -16,6 +16,28 @@ Route::get('/', function () {
 });
 
 Route::get('foods', function(){
-	return view('spicy.index');
+	return view('spicy.welcome', [
+		'title' => "Welcome to Noodlepark."
+	]);
 });
 
+Route::get('our-menu', function(){
+	return view('spicy.blog_archive', [
+		'title' => "Noodlepark | Our menu"
+	]);
+});
+
+Route::get('get-order', function(){
+	return view('spicy.blog_single', [
+		'title' => "Noodlepark | Get orders"
+	]);
+});
+
+Route::get('test', function(){
+	return view('test.child');
+});
+
+
+
+
+?>

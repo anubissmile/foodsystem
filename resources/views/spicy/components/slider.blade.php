@@ -4,7 +4,7 @@
       <div class="mu-top-slider">
         <!-- Top slider single slide -->
         <div class="mu-top-slider-single">
-          <img src="{{asset('food_asset/assets/img/slider/1.jpg')}}" alt="img">
+          <img src="{{asset('food_asset/assets/img/slider/bg_pasta.jpg')}}" alt="img">
           <!-- Top slider content -->
           <div class="mu-top-slider-content">
             <span class="mu-slider-small-title">Welcome</span>
@@ -17,7 +17,7 @@
         <!-- / Top slider single slide -->    
          <!-- Top slider single slide -->
         <div class="mu-top-slider-single">
-          <img src="{{asset('food_asset/assets/img/slider/2.jpg')}}" alt="img">
+          <img src="{{asset('food_asset/assets/img/slider/dining_table.jpg')}}" alt="img">
           <!-- Top slider content -->
           <div class="mu-top-slider-content">
             <span class="mu-slider-small-title">The Real</span>
@@ -30,7 +30,7 @@
         <!-- / Top slider single slide --> 
          <!-- Top slider single slide -->
         <div class="mu-top-slider-single">
-          <img src="{{asset('food_asset/assets/img/slider/3.jpg')}}" alt="img">
+          <img src="{{asset('food_asset/assets/img/slider/lime.jpg')}}" alt="img">
           <!-- Top slider content -->
           <div class="mu-top-slider-content">
             <span class="mu-slider-small-title">Delicious</span>

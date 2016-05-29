@@ -10,5 +10,9 @@
         <div class="container">
             @yield('content')
         </div>
+
+        @section('t')
+            Hello Wesarut @yield('b')
+        @show
     </body>
 </html>
