@@ -43,14 +43,6 @@ Route::group(['prefix' => 'admin'], function(){
 		return view('admin_auth.auth');
 	});
 
-	Route::post('login', 'Admins\LoginController@login');
-
-	Route::get('logout', 'Admins\LoginController@logout');
-
-	Route::get('dashboard', function(){
-		return "DASHBOARD";
-	});
-
 });
 
 
