@@ -11,6 +11,10 @@
 |
 */
 
+/*Route::get('test', function(){
+	return view('test.child');
+});*/
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -33,8 +37,12 @@ Route::get('get-order', function(){
 	]);
 });
 
-Route::get('test', function(){
-	return view('test.child');
+Route::group(['prefix' => 'admin'], function(){
+
+	Route::get('login', function(){
+		return view('admin_auth.auth');
+	});
+
 });
 
 
