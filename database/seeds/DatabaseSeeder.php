@@ -18,8 +18,7 @@ class DatabaseSeeder extends Seeder
 
 class UsersTableSeeder extends Seeder{
 	public function run(){
-		User::create([
-
+        User::create([
             /*$table->increments('ID');
             $table->string('NAME');
             $table->string('SURNAME');
@@ -27,11 +26,19 @@ class UsersTableSeeder extends Seeder{
             $table->string('EMAIL')->unique();
             $table->string('PASSWORD');
             $table->timestamps();*/
-        	'NAME' => 'Wesarut',
-        	'SURNAME' => 'Khumwilai',
-        	'USERNAME' => 'admin',
-        	'EMAIL' => 'wesarut.khm@gmail.com',
-        	'PASSWORD' => bcrypt('1234'),
-		]);
+            'NAME' => 'Wesarut',
+            'SURNAME' => 'Khumwilai',
+            'USERNAME' => 'admin',
+            'EMAIL' => 'wesarut.khm@gmail.com',
+            'PASSWORD' => Hash::make('1234')
+        ]);
+
+        User::create([
+            'NAME' => 'Vikrom',
+            'SURNAME' => 'KKb',
+            'USERNAME' => 'Vik',
+            'EMAIL' => 'Vikrom.kkb@gmail.com',
+            'PASSWORD' => Hash::make('50vik')
+        ]);
 	}
 }

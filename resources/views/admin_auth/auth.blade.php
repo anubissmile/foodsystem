@@ -6,6 +6,13 @@
 	<link rel="stylesheet" href="{{asset('food_asset/admin_auth/css/admin_auth_style.css')}}">
 </head>
 <body>
+
+	
+	@if(Session::has('message'))
+	<div>
+	{{Session::get('message')}}
+	</div>
+	@endif
 	<div class="login-page">
 	  <div class="form">
 	    <form class="register-form">
@@ -15,9 +22,13 @@
 	      <button>create</button>
 	      <p class="message">Already registered? <a href="#">Sign In</a></p>
 	    </form>
-	    <form class="login-form">
-	      <input type="text" placeholder="username"/>
-	      <input type="password" placeholder="password"/>
+
+	    <form class="login-form" method="POST" action="{{url('admin/login')}}">
+	      <input type="hidden" name="_token" value="{{csrf_token()}}">
+	      {!!$errors->first('username', '<span>*:message</span>')!!}
+	      <input type="text" name="username" value="{{old('username')}}" placeholder="username"/>
+	      {!!$errors->first('password', '<span>*:message</span>')!!}
+	      <input type="password" name="password" value=""  placeholder="password"/>
 	      <button>login</button>
 	      <!-- <p class="message">Not registered? <a href="#">Create an account</a></p> -->
 	    </form>
