@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
 
 class UsersTableSeeder extends Seeder{
 	public function run(){
-		User::create([
+        DB::table('tb_admin')->delete();
+        User::create([
 
             /*$table->increments('ID');
             $table->string('NAME');
@@ -27,11 +28,19 @@ class UsersTableSeeder extends Seeder{
             $table->string('EMAIL')->unique();
             $table->string('PASSWORD');
             $table->timestamps();*/
-        	'NAME' => 'Wesarut',
-        	'SURNAME' => 'Khumwilai',
-        	'USERNAME' => 'admin',
-        	'EMAIL' => 'wesarut.khm@gmail.com',
-        	'PASSWORD' => bcrypt('1234'),
+            'name' => 'Wesarut',
+            'surname' => 'Khumwilai',
+            'username' => 'admin',
+            'email' => 'wesarut.khm@gmail.com',
+            'password' => Hash::make('1234'),
+        ]);
+
+		User::create([
+        	'name' => 'Vikrom',
+        	'surname' => 'Bkk',
+        	'username' => 'vik',
+        	'email' => 'vikrom.bkk@gmail.com',
+        	'password' => Hash::make('50vik'),
 		]);
 	}
 }

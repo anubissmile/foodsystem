@@ -13,12 +13,13 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('tb_admin', function (Blueprint $table) {
-            $table->increments('ID');
-            $table->string('NAME');
-            $table->string('SURNAME');
-            $table->string('USERNAME');
-            $table->string('EMAIL')->unique();
-            $table->string('PASSWORD');
+            $table->increments('id');
+            $table->string('name');
+            $table->string('surname');
+            $table->string('username');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->string('remember_token');
             $table->timestamps();
         });
     }

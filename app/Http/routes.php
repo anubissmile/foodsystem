@@ -39,8 +39,14 @@ Route::get('get-order', function(){
 
 Route::group(['prefix' => 'admin'], function(){
 
-	Route::get('login', function(){
-		return view('admin_auth.auth');
+	Route::group(['namespace' => 'Admins'], function(){
+		Route::get('login', 'LoginController@getIndex');
+		Route::post('login', 'LoginController@login');
+		Route::get('logout', 'LoginController@logout');
+	});
+
+	Route::get('dashboard', function(){
+		return "dashboard";
 	});
 
 });
