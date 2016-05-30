@@ -28,19 +28,19 @@ class UsersTableSeeder extends Seeder{
             $table->string('EMAIL')->unique();
             $table->string('PASSWORD');
             $table->timestamps();*/
-            'NAME' => 'Wesarut',
-            'SURNAME' => 'Khumwilai',
-            'USERNAME' => 'admin',
-            'EMAIL' => 'wesarut.khm@gmail.com',
-            'PASSWORD' => Hash::make('1234'),
+            'name' => 'Wesarut',
+            'surname' => 'Khumwilai',
+            'username' => 'admin',
+            'email' => 'wesarut.khm@gmail.com',
+            'password' => Hash::make('1234'),
         ]);
 
 		User::create([
-        	'NAME' => 'Vikrom',
-        	'SURNAME' => 'Bkk',
-        	'USERNAME' => 'vik',
-        	'EMAIL' => 'vikrom.bkk@gmail.com',
-        	'PASSWORD' => Hash::make('50vik'),
+        	'name' => 'Vikrom',
+        	'surname' => 'Bkk',
+        	'username' => 'vik',
+        	'email' => 'vikrom.bkk@gmail.com',
+        	'password' => Hash::make('50vik'),
 		]);
 	}
 }

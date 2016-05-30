@@ -39,9 +39,15 @@ Route::get('get-order', function(){
 
 Route::group(['prefix' => 'admin'], function(){
 
-	Route::get('login', 'Admins\LoginController@getIndex');
-	Route::post('login', 'Admins\LoginController@login');
-	Route::get('logout', 'Admins\LoginController@logout');
+	Route::group(['namespace' => 'Admins'], function(){
+		Route::get('login', 'LoginController@getIndex');
+		Route::post('login', 'LoginController@login');
+		Route::get('logout', 'LoginController@logout');
+	});
+
+	Route::get('dashboard', function(){
+		return "dashboard";
+	});
 
 });
 

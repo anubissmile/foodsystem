@@ -27,15 +27,20 @@ class LoginController extends Controller
     	$username = $request->input('usr');
     	$password = $request->input('pwd');
 
-    	if(Auth::attempt(["USERNAME" => $username, "PASSWORD" => $password])){
-    		return redirect()->intended('/admin/login');
+    	if(Auth::attempt(["username" => "$username", "password" => "$password"])){
+    		return redirect()->intended('/admin/dashboard');
     	}else{
     		return redirect()->back()->with('message', "Error!! Username or Password Incorrect. \nPlease try again.");
     	}
     }
 
     public function logout(){
-    	Auth::logout();
-    	return redirect('/admin/login');
+    	if(Auth::check()){
+    		Auth::logout();
+    		return redirect()->intended('/admin/login');
+    	}else{
+    		return redirect()->intended('/foods');
+    	}
+    	// return "logout";
     }
 }
