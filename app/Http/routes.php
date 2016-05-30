@@ -45,8 +45,11 @@ Route::group(['prefix' => 'admin'], function(){
 		Route::get('logout', 'LoginController@logout');
 	});
 
-	Route::get('dashboard', function(){
-		return "dashboard";
+
+	Route::group(['middleware' => 'auth'], function(){
+		Route::get('dashboard', function(){
+			return "dashboard";
+		});
 	});
 
 });
