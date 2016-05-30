@@ -39,9 +39,9 @@ Route::get('get-order', function(){
 
 Route::group(['prefix' => 'admin'], function(){
 
-	Route::get('login', function(){
-		return view('admin_auth.auth');
-	});
+	Route::get('login', 'Admins\LoginController@getIndex');
+	Route::post('login', 'Admins\LoginController@login');
+	Route::get('logout', 'Admins\LoginController@logout');
 
 });
 
