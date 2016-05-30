@@ -37,6 +37,7 @@ class LoginController extends Controller
     public function logout(){
     	if(Auth::check()){
     		Auth::logout();
+    		sleep(0.5);
     		return redirect()->intended('/admin/login');
     	}else{
     		return redirect()->intended('/foods');
