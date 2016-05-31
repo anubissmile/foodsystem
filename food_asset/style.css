@@ -39,6 +39,35 @@ body {
   overflow-x: hidden;
 }
 
+.bg-red{
+  background-color:#F79C9C;
+}
+
+.bg-green{
+  background-color:#86C856;
+}
+
+.bg-brown{
+  background-color:#9A8465;
+}
+
+.bg-red:hover{
+  background-color:#E54040;
+}
+
+.bg-green:hover{
+  background-color:#5E9736;
+}
+
+.normal-btn{
+  font-family: "Kanit", "Open Sans", sans-serif;
+  display: inline-block;
+  font-size: 16px;
+  padding: 15px 35px;
+  position: relative;
+  border:1px solid black;
+}
+
 .no-padding {
   padding: 0;
 }

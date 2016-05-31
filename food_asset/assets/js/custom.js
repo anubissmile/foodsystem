@@ -259,10 +259,27 @@ jQuery(function($){
   
 });
 
-function setLabelPrice(price,amount,sum){
+function setLabelPrice(price,amount,sum,summary){
+  sum = price * amount; 
   $("#price").html(price + " ฿");
   $("#sum").html(sum + " ฿");
   $("#amount").html(amount + " ชาม");
+
+  // MAKE SUMMARY
+  var leng = $(".mu-make-order-content .row .mu-readmore-btn-active").length;
+  $(".mu-make-order-content .row .mu-readmore-btn-active").each(function(index, el) {
+    summary += $(this).html() + " ";
+    if(index != (leng - 1)){
+      summary += "+ ";
+    }else{
+      summary += "| " + amount + " ชาม" + " ราคา" + sum + " ฿";
+    }
+  });
+
+  if(summary != ""){
+    $("#lb-result").html(summary);
+  }
+
 }
 
 function sumCategoryPrice(call){
@@ -274,20 +291,63 @@ function sumCategoryPrice(call){
 }
 
 function orderTask(){
+  var summary = "";
+  var pNoodle = pSoup = pTopping = pOther = pExtra = 0;
+  var active = {".noodle":0, ".soup":0, ".topping":0, ".other":0, ".extra":0};
   var sum = price = 0;
   var amount = 1;
-  var pNoodle = pSoup = pTopping = pOther = pExtra = 0;
   var sumNoodle = sumCategoryPrice('.noodle');
   var sumSoup = sumCategoryPrice('.soup');
   var sumTopping = sumCategoryPrice('.topping');
   var sumOther = sumCategoryPrice('.other');
   var sumExtra = sumCategoryPrice('.extra');
-  setLabelPrice(price,amount,sum);
+  setLabelPrice(price,amount,sum,summary);
+
+  $("#cancel").click(function(event) {
+    pNoodle = pSoup = pTopping = pOther = pExtra = sum = price = 0;
+    summary = "";
+    active = {".noodle":0, ".soup":0, ".topping":0, ".other":0, ".extra":0};
+    amount = 1;
+    sumNoodle = sumCategoryPrice('.noodle');
+    sumSoup = sumCategoryPrice('.soup');
+    sumTopping = sumCategoryPrice('.topping');
+    sumOther = sumCategoryPrice('.other');
+    sumExtra = sumCategoryPrice('.extra');
+    $(".mu-readmore-btn").removeClass('mu-readmore-btn-active');
+    $("#lb-result").html("");
+    setLabelPrice(price,amount,sum,summary);
+  });
+
+  $("#order").click(function(event) {
+    var s,str="";
+    summary = "";
+    $(".mu-make-order-content .row[data-mustselect='true']").each(function(index, el) {
+      s = $(this).attr("id");
+
+      if(active[s] == 0){
+        str += "  " + $(this).children('h3').html() + "\n";
+      }
+    });
+    if(str != ""){
+      alert("คุณจำเป็นต้องเลือกรายการเหล่านี้\n" + str);
+    }else{
+      /**
+      * SENDING ORDER.
+      **/
+      if(confirm("โปรดยืนยันการรายการอาหาร!")){
+        
+      }
+    }
+
+  });
   
   $('#plus').click(function(event) {
-    amount++;
-    sum = price * amount;
-    setLabelPrice(price,amount,sum);
+    if(amount < 15){
+      amount++;
+    }else{
+      return false;
+    }
+    setLabelPrice(price,amount,sum,summary);
   });
 
   $('#minus').click(function(event) {
@@ -296,13 +356,11 @@ function orderTask(){
     }else{
       return false;
     }
-    sum = price * amount;
-    setLabelPrice(price,amount,sum);
+    setLabelPrice(price,amount,sum,summary);
   });
 
 
   $('.mu-readmore-btn').click(function(event) {
-
     var category = $(this).parent().attr("id");
     var type = $(this).parent().attr("data-type");
     var thisPrice = parseInt($(this).attr("data-price"));
@@ -312,35 +370,84 @@ function orderTask(){
       if(status){
         $(this).toggleClass('mu-readmore-btn-active');
         //Minus
-        alert("Minus");
+        active[category] = 0;
         price -= thisPrice;
-        setLabelPrice(price,amount,sum);
-        alert(price);
+        setLabelPrice(price,amount,sum,summary);
       }else{
         $(this).toggleClass('mu-readmore-btn-active');
         //Plus
-        alert("Plus");
+        active[category] = 1;
         price += thisPrice;
-        setLabelPrice(price,amount,sum);
-        alert(price);
+        setLabelPrice(price,amount,sum,summary);
       }
     }else if(type === "select"){
       var status = $(this).is('.mu-readmore-btn-active');
       if(status){
         $(category).removeClass('mu-readmore-btn-active');
         //Clear
-        alert("Clear");
-        price -= thisPrice;
-        setLabelPrice(price,amount,sum);
-        alert(price);
+        switch (category) {
+          case ".noodle":
+            pNoodle = 0;
+            price -= thisPrice;
+            break;
+          case ".soup":
+            pSoup = 0;
+            price -= thisPrice;
+            break;
+          case ".topping":
+            pTopping = 0;
+            price -= thisPrice;
+            break;
+          case ".other":
+            pOther = 0;
+            price -= thisPrice;
+            break;
+          case ".extra":
+            pExtra = 0;
+            price -= thisPrice;
+            break;
+          default:
+            // statements_def
+            break;
+        }
+        active[category] = 0;
+        setLabelPrice(price,amount,sum,summary);
       }else{
         $(category).removeClass('mu-readmore-btn-active');
         $(this).toggleClass('mu-readmore-btn-active');
         //Clear then Plus
-        alert("Clear then Plus");
-        price += thisPrice;
-        setLabelPrice(price,amount,sum);
-        alert(price);
+        switch (category) {
+          case ".noodle":
+            price -= pNoodle;
+            price += thisPrice;
+            pNoodle = thisPrice;
+            break;
+          case ".soup":
+            price -= pSoup;
+            price += thisPrice;
+            pSoup = thisPrice;
+            break;
+          case ".topping":
+            price -= pTopping;
+            price += thisPrice;
+            pTopping = thisPrice;
+            break;
+          case ".other":
+            price -= pOther;
+            price += thisPrice;
+            pOther = thisPrice;
+            break;
+          case ".extra":
+            price -= pExtra;
+            price += thisPrice;
+            pExtra = thisPrice;
+            break;
+          default:
+            // statements_def
+            break;
+        }     
+        active[category] = 1; 
+        setLabelPrice(price,amount,sum,summary);
       }
     }else if(type === "hit"){
       return false;
