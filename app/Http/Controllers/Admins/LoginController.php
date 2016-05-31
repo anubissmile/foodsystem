@@ -17,7 +17,7 @@ class LoginController extends Controller
 
 	public function getIndex(){
 		if(Auth::check()){
-			return redirect('/foods');
+			return redirect('/');
 		}else{
 			return view('admin_auth.auth');
 		}
@@ -28,7 +28,11 @@ class LoginController extends Controller
     	$password = $request->input('pwd');
 
     	if(Auth::attempt(["username" => "$username", "password" => "$password"])){
-    		return redirect()->intended('/admin/dashboard');
+            return redirect('/');
+            /**
+             * intended() is redirect to fail request before you got login.
+             *  redirect() is go to anywhere.
+             */
     	}else{
     		return redirect()->back()->with('message', "Error!! Username or Password Incorrect. \nPlease try again.");
     	}
@@ -40,7 +44,7 @@ class LoginController extends Controller
     		sleep(0.5);
     		return redirect()->intended('/admin/login');
     	}else{
-    		return redirect()->intended('/foods');
+    		return redirect()->intended('/');
     	}
     	// return "logout";
     }

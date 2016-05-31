@@ -19,15 +19,17 @@ class MakeOrderTransactions extends Controller
     		// $data = $request->input("summary");
     		// return json_encode(["sss" => $data]);
     		$data = $request->all();
-    		$date = date("Y-m-d H:i:s");
+            $date = date("Y-m-d");
+    		$datetime = date("Y-m-d H:i:s");
     		$result = DB::table('tb_order_transaction')->insert([
-    			'code' => "FT".strtotime($date),
+    			'code' => "FT".strtotime($datetime),
     			'list' => $data['summary'],
     			'amount' => $data['amount'],
     			'price' => $data['price'],
     			'total' => $data['total'],
-    			'created_at' => $date,
-    			'updated_at' => $date
+                'create_date' => $date,
+    			'created_at' => $datetime,
+    			'updated_at' => $datetime
     		]);
     		if($result){
     			$ds = [

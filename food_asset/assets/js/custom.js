@@ -248,17 +248,44 @@ jQuery(function($){
   /*  13. PRELOADER
   /* ----------------------------------------------------------- */
 
-   jQuery(window).load(function() { // makes sure the whole site is loaded      
+   jQuery(document).ready(function() { // makes sure the whole site is loaded      
       jQuery('#aa-preloader-area').delay(300).fadeOut('slow'); // will fade out      
     })
    
    $(document).ready(function(){
       orderTask();
-
+      makeLink();
+      allOrderListener();
    });
 
   
 });
+
+function allOrderListener(){
+
+  $('.complete').click(function(){
+
+    var countList = $('#td-list');
+    var count = parseInt(countList.attr('data-count'));
+    alert(count);
+    count--;
+    countList.html(count + " รายการ").attr("data-count", count);
+    var code = $(this).attr('data-code');
+    // alert("com " + code);
+    $("."+code).fadeOut('slow');
+
+  });
+
+}
+
+function makeLink(){
+  $('.make-link').hover(function(event) {
+    var a = $(this).attr('data-h');
+    $(this).click(function(){
+      location.href = a;
+    });
+  });
+}
 
 function setLabelPrice(price,amount,sum,summary){
   // sum = price * amount; 
@@ -362,7 +389,9 @@ function orderTask(){
             if(status = 'success'){
               alert(xhr.describe);
               $("#cancel").click();
-              location.reload();
+              $('html, body').animate({
+                    scrollTop: $("#mu-make-order").offset().top
+              }, 2000);
             }
           },
           error : function(xhr,status,data){

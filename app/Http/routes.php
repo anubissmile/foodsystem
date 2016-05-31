@@ -11,19 +11,9 @@
 |
 */
 
-/*Route::get('test', function(){
-	return view('test.child');
-});*/
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('foods', function(){
-	return view('spicy.welcome', [
-		'title' => "Welcome to Noodlepark."
-	]);
-});
+/**
+ * ROUTE FOR TESTING.
+ */
 
 Route::get('our-menu', function(){
 	return view('spicy.blog_archive', [
@@ -37,24 +27,85 @@ Route::get('get-order', function(){
 	]);
 });
 
+//////////////////////////////////////////////////////////////////////////////
+
+
+/**
+ * ROUTE FOR FIRST PAGE & REDIRECT TO ANOTHER PAGES.
+ */
+
+/*Route::get('/', function () {
+    // return view('welcome');
+    return view('spicy.welcome', [
+		'title' => "Welcome to Noodlepark."
+	]);
+});*/
+
+Route::any('/', 'HomeController@getIndex');
+
+Route::get('ad.min', function(){
+	return redirect('admin/login');
+});
+
+Route::get('log.out', function(){
+	return redirect('admin/logout');
+});
+
+Route::get('or.der', function(){
+	return redirect("admin/orders");
+});
+
+Route::get('man.men', function(){
+	return "manage menu";
+});
+
+//////////////////////////////////////////////////////////////////////////////
+
+/**
+ * ROUTE FOR AJAX PAGE.
+ */
+
 Route::post('make/orders', "Order\MakeOrderTransactions@createTransaction");
 
+//////////////////////////////////////////////////////////////////////////////
+
+/**
+ * ROUTE FOR admin/* PREFIX
+ */
+
 Route::group(['prefix' => 'admin'], function(){
+
+	/**
+	 * ROUTE FOR NAMESPACE Admins\*Controller
+	 */
 
 	Route::group(['namespace' => 'Admins'], function(){
 		Route::get('login', 'LoginController@getIndex');
 		Route::post('login', 'LoginController@login');
-		Route::get('logout', 'LoginController@logout');
-	});
 
 
-	Route::group(['middleware' => 'auth'], function(){
-		Route::get('dashboard', function(){
-			return "dashboard";
+		/**
+		 * ROUTE FOR MIDDLEWARE BY 'auth'
+		 */
+
+		Route::group(['middleware' => 'auth'], function(){
+			
+			Route::get('logout', 'LoginController@logout');
+
+			Route::get('dashboard', function(){
+				return "dashboard";
+			});
 		});
+		
+		//////////////////////////////////////////////////////////////////////////////
 	});
+
+	//////////////////////////////////////////////////////////////////////////////
+
+
 
 });
 
+//////////////////////////////////////////////////////////////////////////////
 
 

@@ -24,6 +24,7 @@
 #LATEST NEWS SECTION
 #CONTACT SECTION
 #MAKE ORDER SECTION
+#ALL ORDER SECTION
 #MAP SECTION
 #BLOG PAGE
 #ERROR  PAGE
@@ -37,6 +38,40 @@ body {
   color: #333333;
   font-size: 15px;
   overflow-x: hidden;
+}
+
+.normal-table{
+  font-family: "Kanit", serif;
+  border-collapse:collapse;
+  width:90%;
+  margin:auto;
+  text-align:left;
+}
+
+.head-all-orders>tr, .body-all-orders>tr{
+  border-bottom:2px solid #53B4B1;
+}
+
+.head-all-orders>tr{
+  border-width:3px;
+  font-size:20px;
+}
+
+.head-all-orders>tr>td, .body-all-orders>tr>td{
+  padding:5px 5px;
+}
+
+.body-all-orders>tr:hover{
+  background-color: #5E918F;
+  color:white;
+}
+
+.head-active{
+  width:10%;
+}
+
+#td-amount{
+  width:15%;
 }
 
 .bg-red{
@@ -57,6 +92,15 @@ body {
 
 .bg-green:hover{
   background-color:#5E9736;
+}
+
+.small-btn{
+  font-family: "Kanit", "Open Sans", sans-serif;
+  display: inline-block;
+  font-size: 16px;
+  padding: 5px 10px;
+  position: relative;
+  border:1px solid black;
 }
 
 .normal-btn{
@@ -1511,6 +1555,93 @@ RESERVATION SECTION
   text-align: center;
 }
 #mu-make-order .mu-make-order-area .mu-make-order-content .mu-make-order-right .mu-make-order-widget address p span {
+  display: inline-block;
+  margin-right: 20px;
+  min-width: 130px;
+}
+/*==================
+ ALL ORDER SECTION
+====================*/
+#mu-all-order {
+  display: inline;
+  float: left;
+  padding: 100px 0;
+  width: 100%;
+}
+#mu-all-order .mu-all-order-area {
+  display: inline;
+  float: left;
+  width: 100%;
+}
+#mu-all-order .mu-all-order-area .mu-all-order-content {
+  display: inline;
+  float: left;
+  margin-top: 30px;
+  width: 100%;
+}
+#mu-all-order .mu-all-order-area .mu-all-order-content .mu-all-order-left {
+  display: inline;
+  float: left;
+  font-family: "Open Sans", sans-serif;
+  width: 100%;
+}
+#mu-all-order .mu-all-order-area .mu-all-order-content .mu-all-order-left .form-group {
+  margin-bottom: 25px;
+}
+#mu-all-order .mu-all-order-area .mu-all-order-content .mu-all-order-left .form-group label {
+  font-size: 16px;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+#mu-all-order .mu-all-order-area .mu-all-order-content .mu-all-order-left .mu-all-order-form input[type="text"],
+#mu-all-order .mu-all-order-area .mu-all-order-content .mu-all-order-left .mu-all-order-form input[type="email"] {
+  color: #000;
+  border-radius: 0;
+  height: 40px;
+}
+#mu-all-order .mu-all-order-area .mu-all-order-content .mu-all-order-left .mu-all-order-form input[type="text"]:focus,
+#mu-all-order .mu-all-order-area .mu-all-order-content .mu-all-order-left .mu-all-order-form input[type="email"]:focus {
+  box-shadow: none;
+}
+#mu-all-order .mu-all-order-area .mu-all-order-content .mu-all-order-left .mu-all-order-form textarea {
+  color: #000;
+  border-radius: 0;
+  padding: 10px;
+}
+#mu-all-order .mu-all-order-area .mu-all-order-content .mu-all-order-left .mu-all-order-form textarea:focus {
+  box-shadow: none;
+}
+#mu-all-order .mu-all-order-area .mu-all-order-content .mu-all-order-right {
+  display: inline;
+  float: left;
+  padding: 0 30px;
+  width: 100%;
+}
+#mu-all-order .mu-all-order-area .mu-all-order-content .mu-all-order-right .mu-all-order-widget {
+  display: inline;
+  float: left;
+  margin-bottom: 25px;
+  width: 100%;
+}
+#mu-all-order .mu-all-order-area .mu-all-order-content .mu-all-order-right .mu-all-order-widget h3 {
+  margin-top: 0px;
+}
+#mu-all-order .mu-all-order-area .mu-all-order-content .mu-all-order-right .mu-all-order-widget > p {
+  letter-spacing: 0.5px;
+  line-height: 26px;
+}
+#mu-all-order .mu-all-order-area .mu-all-order-content .mu-all-order-right .mu-all-order-widget address {
+  margin-top: 20px;
+}
+#mu-all-order .mu-all-order-area .mu-all-order-content .mu-all-order-right .mu-all-order-widget address p {
+  letter-spacing: 0.5px;
+}
+#mu-all-order .mu-all-order-area .mu-all-order-content .mu-all-order-right .mu-all-order-widget address p i {
+  margin-right: 10px;
+  width: 20px;
+  text-align: center;
+}
+#mu-all-order .mu-all-order-area .mu-all-order-content .mu-all-order-right .mu-all-order-widget address p span {
   display: inline-block;
   margin-right: 20px;
   min-width: 130px;
