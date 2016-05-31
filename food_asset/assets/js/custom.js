@@ -252,6 +252,99 @@ jQuery(function($){
       jQuery('#aa-preloader-area').delay(300).fadeOut('slow'); // will fade out      
     })
    
+   $(document).ready(function(){
+      orderTask();
+   });
+
   
 });
 
+function setLabelPrice(price,amount,sum){
+  $("#price").html(price + " ฿");
+  $("#sum").html(sum + " ฿");
+  $("#amount").html(amount + " ชาม");
+}
+
+function sumCategoryPrice(call){
+  var i = 0;
+  $(call).each(function(index, el) {
+    i = i + parseInt($(this).attr('data-price'));
+  });
+  return i;
+}
+
+function orderTask(){
+  var sum = price = 0;
+  var amount = 1;
+  var pNoodle = pSoup = pTopping = pOther = pExtra = 0;
+  var sumNoodle = sumCategoryPrice('.noodle');
+  var sumSoup = sumCategoryPrice('.soup');
+  var sumTopping = sumCategoryPrice('.topping');
+  var sumOther = sumCategoryPrice('.other');
+  var sumExtra = sumCategoryPrice('.extra');
+  setLabelPrice(price,amount,sum);
+  
+  $('#plus').click(function(event) {
+    amount++;
+    sum = price * amount;
+    setLabelPrice(price,amount,sum);
+  });
+
+  $('#minus').click(function(event) {
+    if(amount > 1){
+      amount--;
+    }else{
+      return false;
+    }
+    sum = price * amount;
+    setLabelPrice(price,amount,sum);
+  });
+
+
+  $('.mu-readmore-btn').click(function(event) {
+
+    var category = $(this).parent().attr("id");
+    var type = $(this).parent().attr("data-type");
+    var thisPrice = parseInt($(this).attr("data-price"));
+
+    if(type === "choice"){
+      var status = $(this).is('.mu-readmore-btn-active');
+      if(status){
+        $(this).toggleClass('mu-readmore-btn-active');
+        //Minus
+        alert("Minus");
+        price -= thisPrice;
+        setLabelPrice(price,amount,sum);
+        alert(price);
+      }else{
+        $(this).toggleClass('mu-readmore-btn-active');
+        //Plus
+        alert("Plus");
+        price += thisPrice;
+        setLabelPrice(price,amount,sum);
+        alert(price);
+      }
+    }else if(type === "select"){
+      var status = $(this).is('.mu-readmore-btn-active');
+      if(status){
+        $(category).removeClass('mu-readmore-btn-active');
+        //Clear
+        alert("Clear");
+        price -= thisPrice;
+        setLabelPrice(price,amount,sum);
+        alert(price);
+      }else{
+        $(category).removeClass('mu-readmore-btn-active');
+        $(this).toggleClass('mu-readmore-btn-active');
+        //Clear then Plus
+        alert("Clear then Plus");
+        price += thisPrice;
+        setLabelPrice(price,amount,sum);
+        alert(price);
+      }
+    }else if(type === "hit"){
+      return false;
+    }
+
+  });
+}

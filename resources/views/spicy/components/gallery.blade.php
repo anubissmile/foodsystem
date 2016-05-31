@@ -4,8 +4,8 @@
         <div class="col-md-12">
           <div class="mu-gallery-area">
             <div class="mu-title">
-              <span class="mu-subtitle">Discover</span>
-              <h2>Our Gallery</h2>
+              <span class="mu-subtitle">Make Order</span>
+              <h2>สั่งอาหาร</h2>
               <i class="fa fa-spoon"></i>              
               <span class="mu-title-bar"></span>
             </div>
@@ -23,6 +23,20 @@
               </div>
               <!-- Start gallery image -->
               <div class="mu-gallery-body" id="mixit-container">
+                <!-- start single gallery image -->
+                <div class="mu-single-gallery col-md-4 mix food">
+                  <div class="mu-single-gallery-item">
+                    <figure class="mu-single-gallery-img">
+                      <a href="#"><img alt="img" src="{{asset('food_asset/assets/img/gallery/small/1.jpg')}}"></a>
+                    </figure>
+                    <div class="mu-single-gallery-info">
+                      <a href="assets/img/gallery/big/1.jpg')}}" data-fancybox-group="gallery" class="fancybox">
+                        <img src="{{asset('food_asset/assets/img/plus.png')}}" alt="plus icon img">
+                      </a>
+                    </div>                  
+                  </div>
+                </div>
+                <!-- End single gallery image -->
                 <!-- start single gallery image -->
                 <div class="mu-single-gallery col-md-4 mix food">
                   <div class="mu-single-gallery-item">
@@ -92,21 +106,7 @@
                     </div>   
                   </div>
                 </div>               
-                <!-- End single gallery image -->               
-                <!-- start single gallery image -->
-                <div class="mu-single-gallery col-md-4 mix food">                  
-                  <div class="mu-single-gallery-item">
-                    <figure class="mu-single-gallery-img">
-                      <a href="#"><img alt="img" src="{{asset('food_asset/assets/img/gallery/small/6.jpg')}}"></a>
-                    </figure>
-                    <div class="mu-single-gallery-info">
-                      <a href="assets/img/gallery/big/6.jpg')}}" data-fancybox-group="gallery" class="fancybox">
-                        <img src="{{asset('food_asset/assets/img/plus.png')}}" alt="plus icon img">
-                      </a>
-                    </div>                  
-                  </div>
-                </div>
-                <!-- End single gallery image -->
+                <!-- End single gallery image -->          
                 <!-- start single gallery image -->
                 <div class="mu-single-gallery col-md-4 mix drink">                  
                   <div class="mu-single-gallery-item">
