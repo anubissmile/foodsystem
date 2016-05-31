@@ -37,6 +37,8 @@ Route::get('get-order', function(){
 	]);
 });
 
+Route::post('make/orders', "Order\MakeOrderTransactions@createTransaction");
+
 Route::group(['prefix' => 'admin'], function(){
 
 	Route::group(['namespace' => 'Admins'], function(){
