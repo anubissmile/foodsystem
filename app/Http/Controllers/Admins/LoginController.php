@@ -28,7 +28,7 @@ class LoginController extends Controller
     	$password = $request->input('pwd');
 
     	if(Auth::attempt(["username" => "$username", "password" => "$password"])){
-    		return redirect()->intended('/admin/dashboard');
+    		return redirect()->intended('/');
     	}else{
     		return redirect()->back()->with('message', "Error!! Username or Password Incorrect. \nPlease try again.");
     	}

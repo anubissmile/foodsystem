@@ -14,7 +14,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul id="top-menu" class="nav navbar-nav navbar-right mu-main-nav">
-            <li><a href="#mu-slider">HOME</a></li>                
+            <li><a href="ho.me">HOME</a></li>                
             <li><a href="#mu-make-order">ORDER</a></li>
             <!-- <li><a href="#mu-gallery">GALLERY</a></li>
             <li><a href="#mu-about-us">ABOUT US</a></li>                       
@@ -28,15 +28,18 @@
               <ul class="dropdown-menu" role="menu">                
                 <!-- <li><a href="blog-archive.html">BLOG</a></li>
                           <li><a href="blog-single.html">BLOG DETAILS</a></li>
-                          <li><a href="404.html">404 PAGE</a></li>  -->          
-                <li><a href="blog-archive.html">BLOG</a></li>
-                <li><a href="blog-single.html">BLOG DETAILS</a></li>
-                <li><a href="404.html">404 PAGE</a></li>                                            
+                          <li><a href="404.html">404 PAGE</a></li>  -->
+                  @if(Auth::check())
+                    <li><a href="or.der">ORDERS</a></li> 
+                    <li><a href="man.men">MANAGE MENUS</a></li> 
+                    <li><a href="log.out">LOG OUT</a></li>
+                  @else
+                    <li><a href="ad.min">ADMIN</a></li> 
+                  @endif 
               </ul>
             </li>
           </ul>                            
         </div><!--/.nav-collapse -->       
       </div>          
-    </nav> 
-
+    </nav>                                
 </header>
