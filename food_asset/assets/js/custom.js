@@ -254,18 +254,20 @@ jQuery(function($){
    
    $(document).ready(function(){
       orderTask();
+
    });
 
   
 });
 
 function setLabelPrice(price,amount,sum,summary){
-  sum = price * amount; 
+  // sum = price * amount; 
   $("#price").html(price + " ฿");
   $("#sum").html(sum + " ฿");
   $("#amount").html(amount + " ชาม");
 
   // MAKE SUMMARY
+  summary = "";
   var leng = $(".mu-make-order-content .row .mu-readmore-btn-active").length;
   $(".mu-make-order-content .row .mu-readmore-btn-active").each(function(index, el) {
     summary += $(this).html() + " ";
@@ -279,7 +281,7 @@ function setLabelPrice(price,amount,sum,summary){
   if(summary != ""){
     $("#lb-result").html(summary);
   }
-
+  return summary;
 }
 
 function sumCategoryPrice(call){
@@ -301,7 +303,9 @@ function orderTask(){
   var sumTopping = sumCategoryPrice('.topping');
   var sumOther = sumCategoryPrice('.other');
   var sumExtra = sumCategoryPrice('.extra');
-  setLabelPrice(price,amount,sum,summary);
+
+  sum = price * amount; 
+  summary = setLabelPrice(price,amount,sum,summary);
 
   $("#cancel").click(function(event) {
     pNoodle = pSoup = pTopping = pOther = pExtra = sum = price = 0;
@@ -315,12 +319,12 @@ function orderTask(){
     sumExtra = sumCategoryPrice('.extra');
     $(".mu-readmore-btn").removeClass('mu-readmore-btn-active');
     $("#lb-result").html("");
-    setLabelPrice(price,amount,sum,summary);
+    sum = price * amount; 
+    summary = setLabelPrice(price,amount,sum,summary);
   });
 
   $("#order").click(function(event) {
     var s,str="";
-    summary = "";
     $(".mu-make-order-content .row[data-mustselect='true']").each(function(index, el) {
       s = $(this).attr("id");
 
@@ -335,6 +339,35 @@ function orderTask(){
       * SENDING ORDER.
       **/
       if(confirm("โปรดยืนยันการรายการอาหาร!")){
+        // window.location.assign("make/orders");
+        // alert("amount " + amount + " \nprice " + price + "\nsum " + sum + "\nsummary " + summary);
+
+        var token = $("#_token").val();
+
+        $.ajax({
+          url : 'make/orders',
+          type : 'post',
+          dataType : 'json',
+          data : {
+            "_token" : token,
+            "amount" : amount,
+            "price" : price,
+            "total" : sum,
+            "summary" : $("#lb-result").html()
+          },
+          success : function(xhr,status,data){
+            //ON SUCCESS
+            /*alert("On Success " + xhr.sss);
+            alert("On Success " + data.responseText);
+            alert("On Success " + status);*/
+            alert(status);
+          },
+          error : function(xhr,status,data){
+            alert("On Success " + xhr.sss);
+            alert("On Success " + data.responseText);
+            alert("On Success " + status);
+          }
+        });
         
       }
     }
@@ -347,7 +380,8 @@ function orderTask(){
     }else{
       return false;
     }
-    setLabelPrice(price,amount,sum,summary);
+    sum = price * amount; 
+    summary = setLabelPrice(price,amount,sum,summary);
   });
 
   $('#minus').click(function(event) {
@@ -356,7 +390,8 @@ function orderTask(){
     }else{
       return false;
     }
-    setLabelPrice(price,amount,sum,summary);
+    sum = price * amount; 
+    summary = setLabelPrice(price,amount,sum,summary);
   });
 
 
@@ -372,13 +407,15 @@ function orderTask(){
         //Minus
         active[category] = 0;
         price -= thisPrice;
-        setLabelPrice(price,amount,sum,summary);
+        sum = price * amount; 
+        summary = setLabelPrice(price,amount,sum,summary);
       }else{
         $(this).toggleClass('mu-readmore-btn-active');
         //Plus
         active[category] = 1;
         price += thisPrice;
-        setLabelPrice(price,amount,sum,summary);
+        sum = price * amount; 
+        summary = setLabelPrice(price,amount,sum,summary);
       }
     }else if(type === "select"){
       var status = $(this).is('.mu-readmore-btn-active');
@@ -411,7 +448,8 @@ function orderTask(){
             break;
         }
         active[category] = 0;
-        setLabelPrice(price,amount,sum,summary);
+        sum = price * amount; 
+        summary = setLabelPrice(price,amount,sum,summary);
       }else{
         $(category).removeClass('mu-readmore-btn-active');
         $(this).toggleClass('mu-readmore-btn-active');
@@ -447,7 +485,8 @@ function orderTask(){
             break;
         }     
         active[category] = 1; 
-        setLabelPrice(price,amount,sum,summary);
+        sum = price * amount; 
+        summary = setLabelPrice(price,amount,sum,summary);
       }
     }else if(type === "hit"){
       return false;
