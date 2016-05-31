@@ -255,10 +255,28 @@ jQuery(function($){
    $(document).ready(function(){
       orderTask();
       makeLink();
+      allOrderListener();
    });
 
   
 });
+
+function allOrderListener(){
+
+  $('.complete').click(function(){
+
+    var countList = $('#td-list');
+    var count = parseInt(countList.attr('data-count'));
+    alert(count);
+    count--;
+    countList.html(count + " รายการ").attr("data-count", count);
+    var code = $(this).attr('data-code');
+    // alert("com " + code);
+    $("."+code).fadeOut('slow');
+
+  });
+
+}
 
 function makeLink(){
   $('.make-link').hover(function(event) {

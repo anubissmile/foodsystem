@@ -15,8 +15,11 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul id="top-menu" class="nav navbar-nav navbar-right mu-main-nav">
-            <li><a href="#mu-slider">TOP</a></li>
-            <li><a href="#mu-make-order">ORDER</a></li>
+            <li><a href="#mu-slider">HOME</a></li>
+            <li><a href="#mu-make-order">MAKE ORDER</a></li>
+            @if(Auth::check())
+              <li><a href="#mu-all-order">ALL ORDER</a></li>
+            @endif
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown">
                 PAGE 
@@ -27,7 +30,6 @@
                           <li><a href="blog-single.html">BLOG DETAILS</a></li>
                           <li><a href="404.html">404 PAGE</a></li>  -->
                   @if(Auth::check())
-                    <li><a href="or.der">ALL ORDERS</a></li> 
                     <!-- <li><a href="man.men">MANAGE MENUS</a></li>  -->
                     <li><a href="log.out">LOG OUT</a></li>
                   @else

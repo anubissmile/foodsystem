@@ -1,15 +1,15 @@
-<section id="mu-make-order">
+<section id="mu-all-order">
 	    <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <div class="mu-make-order-area">
+          <div class="mu-all-order-area">
             <div class="mu-title">
               <span class="mu-subtitle">All Orders</span>
               <h2>รายการสั่งอาหาร</h2>
               <i class="fa fa-spoon"></i>              
               <span class="mu-title-bar"></span>
             </div>
-            <div class="mu-make-order-content">
+            <div class="mu-all-order-content">
               <!-- <div class="row" id=".noodle" data-mustselect="true" data-type="select">
                 <h3>เลือกเส้น</h3>
                 <div class="noodle mu-readmore-btn" data-price="0">เส้นเล็ก</div>
@@ -25,27 +25,32 @@
                 <table class="normal-table tb-all-orders">
                   <thead class="head-all-orders">
                     <tr>
-                      <td id="td-list">รายการ</td>
+                      <td id="td-list" 
+                        data-count="{{count($orders)}}">{{count($orders)}} รายการ</td>
                       <td id="td-amount">จำนวน (ชาม)</td>
                       <td id="td-complete" class="head-active">เสิร์ฟ</td>
                       <td id="td-cancel" class="head-active">ยกเลิก</td>
                     </tr>
                   </thead>
                   <tbody class="body-all-orders">
-                    <tr>
-                      <td>มาม่า + น้ำใส (20฿) + ลูกชิ้นไก่ + ลูกชิ้นปลา + ไม่ใส่ผัก + ยกทัพ (30฿) | 333 ชาม ราคา50 ฿</td>
-                      <td>333</td>
+                  @foreach($orders as $order)
+                    <tr class="{{$order->code}}">
+                      <td>{{$order->list}}</td>
+                      <td>{{$order->amount}}</td>
                       <td>
-                        <button class="small-btn bg-green">
+                        <button class="complete small-btn bg-green" 
+                          data-code="{{$order->code}}">
                           <span class="glyphicon glyphicon-ok"></span>
                         </button>
                       </td>
                       <td>
-                        <button class="small-btn bg-red">
+                        <button class="abort small-btn bg-red" 
+                          data-code="{{$order->code}}">
                           <span class="glyphicon glyphicon-remove"></span>
                         </button>
                       </td>
                     </tr>
+                  @endforeach
                   </tbody>
                 </table>
               </div>

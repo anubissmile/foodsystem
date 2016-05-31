@@ -34,12 +34,14 @@ Route::get('get-order', function(){
  * ROUTE FOR FIRST PAGE & REDIRECT TO ANOTHER PAGES.
  */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     // return view('welcome');
     return view('spicy.welcome', [
 		'title' => "Welcome to Noodlepark."
 	]);
-});
+});*/
+
+Route::any('/', 'HomeController@getIndex');
 
 Route::get('ad.min', function(){
 	return redirect('admin/login');
@@ -55,12 +57,6 @@ Route::get('or.der', function(){
 
 Route::get('man.men', function(){
 	return "manage menu";
-});
-
-Route::get('home', function(){
-	return view('spicy.welcome', [
-		'title' => "Welcome to Noodlepark."
-	]);
 });
 
 //////////////////////////////////////////////////////////////////////////////
@@ -99,8 +95,6 @@ Route::group(['prefix' => 'admin'], function(){
 			Route::get('dashboard', function(){
 				return "dashboard";
 			});
-
-			Route::get("orders", "OrdersController@getIndex");
 		});
 		
 		//////////////////////////////////////////////////////////////////////////////
@@ -113,7 +107,5 @@ Route::group(['prefix' => 'admin'], function(){
 });
 
 //////////////////////////////////////////////////////////////////////////////
-
-
 
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-
+    
     <!-- Start Metadata -->
     @include('spicy.asset.metadata')
     <!-- End Metadata -->
@@ -20,6 +20,7 @@
 
   </head>
   <body>  
+  
   <!-- Pre Loader -->
   @include('spicy.components.preloader')
   <!-- PRE LOADER -->
@@ -36,9 +37,17 @@
   @include('spicy.components.slider')
   <!-- End slider  -->
 
+
   <!-- Start Order -->
   @include('spicy.components.make_order')
   <!-- End Order -->
+
+  @if(Auth::check())
+    <!-- Start All Order -->
+    @include('spicy.components.all_order')
+    <!-- End All Order -->
+  @endif
+  
 
   <!-- Start Gallery -->
   {{-- @include('spicy.components.gallery') --}}

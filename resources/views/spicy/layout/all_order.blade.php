@@ -36,10 +36,16 @@
   @include('spicy.components.slider')
   <!-- End slider  -->
   
-  <!-- Start All Order -->
-  @include('spicy.components.all_order')
-  <!-- End All Order -->
+  <!-- Start Order -->
+  @include('spicy.components.make_order')
+  <!-- End Order -->
 
+  @if(Auth::check())
+    <!-- Start All Order -->
+    @include('spicy.components.all_order')
+    <!-- End All Order -->
+  @endif
+  
   <!-- Start Footer -->
   @include('spicy.components.footer')
   <!-- End Footer -->
