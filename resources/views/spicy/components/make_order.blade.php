@@ -66,6 +66,7 @@
                 <h3>ส่งรายการ</h3>
                 <button id="order" class="action normal-btn bg-green">ORDER</button>
                 <button id="cancel" class="action normal-btn bg-red">CANCEL</button>
+                <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
               </div>
             </div>
           </div>
