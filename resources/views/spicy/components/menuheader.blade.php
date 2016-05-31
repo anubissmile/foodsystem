@@ -26,6 +26,9 @@
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="blog-archive.html">PAGE <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">                
+                <!-- <li><a href="blog-archive.html">BLOG</a></li>
+                          <li><a href="blog-single.html">BLOG DETAILS</a></li>
+                          <li><a href="404.html">404 PAGE</a></li>  -->          
                 <li><a href="blog-archive.html">BLOG</a></li>
                 <li><a href="blog-single.html">BLOG DETAILS</a></li>
                 <li><a href="404.html">404 PAGE</a></li>                                            

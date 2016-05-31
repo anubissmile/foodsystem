@@ -339,7 +339,6 @@ function orderTask(){
       * SENDING ORDER.
       **/
       if(confirm("โปรดยืนยันการรายการอาหาร!")){
-        // window.location.assign("make/orders");
         // alert("amount " + amount + " \nprice " + price + "\nsum " + sum + "\nsummary " + summary);
 
         var token = $("#_token").val();
@@ -360,12 +359,18 @@ function orderTask(){
             /*alert("On Success " + xhr.sss);
             alert("On Success " + data.responseText);
             alert("On Success " + status);*/
-            alert(status);
+            if(status = 'success'){
+              alert(xhr.describe);
+              $("#cancel").click();
+              location.reload();
+            }
           },
           error : function(xhr,status,data){
-            alert("On Success " + xhr.sss);
+            /*alert("On Success " + xhr.sss);
             alert("On Success " + data.responseText);
-            alert("On Success " + status);
+            alert("On Success " + status);*/
+            alert(status);
+            location.reload();
           }
         });
         
