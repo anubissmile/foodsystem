@@ -362,7 +362,9 @@ function orderTask(){
             if(status = 'success'){
               alert(xhr.describe);
               $("#cancel").click();
-              location.reload();
+              $('html, body').animate({
+                    scrollTop: $("#mu-make-order").offset().top
+              }, 2000);
             }
           },
           error : function(xhr,status,data){

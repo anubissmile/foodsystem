@@ -14,7 +14,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul id="top-menu" class="nav navbar-nav navbar-right mu-main-nav">
-            <li><a href="ho.me">HOME</a></li>                
+            <li><a href="{{url('ho.me')}}">HOME</a></li>                
             <li><a href="#mu-make-order">ORDER</a></li>
             <!-- <li><a href="#mu-gallery">GALLERY</a></li>
             <li><a href="#mu-about-us">ABOUT US</a></li>                       
@@ -24,14 +24,17 @@
             <li><a href="#mu-latest-news">BLOG</a></li> 
             <li><a href="#mu-contact">CONTACT</a></li>  -->
             <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="blog-archive.html">PAGE <span class="caret"></span></a>
+              <a class="dropdown-toggle" data-toggle="dropdown">
+                PAGE 
+                <span class="caret"></span>
+              </a>
               <ul class="dropdown-menu" role="menu">                
                 <!-- <li><a href="blog-archive.html">BLOG</a></li>
                           <li><a href="blog-single.html">BLOG DETAILS</a></li>
                           <li><a href="404.html">404 PAGE</a></li>  -->
                   @if(Auth::check())
-                    <li><a href="or.der">ORDERS</a></li> 
-                    <li><a href="man.men">MANAGE MENUS</a></li> 
+                    <li><a href="or.der">ALL ORDERS</a></li> 
+                    <!-- <li><a href="man.men">MANAGE MENUS</a></li>  -->
                     <li><a href="log.out">LOG OUT</a></li>
                   @else
                     <li><a href="ad.min">ADMIN</a></li> 

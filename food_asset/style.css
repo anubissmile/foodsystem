@@ -39,6 +39,40 @@ body {
   overflow-x: hidden;
 }
 
+.normal-table{
+  font-family: "Kanit", serif;
+  border-collapse:collapse;
+  width:90%;
+  margin:auto;
+  text-align:left;
+}
+
+.head-all-orders>tr, .body-all-orders>tr{
+  border-bottom:2px solid #53B4B1;
+}
+
+.head-all-orders>tr{
+  border-width:3px;
+  font-size:20px;
+}
+
+.head-all-orders>tr>td, .body-all-orders>tr>td{
+  padding:5px 5px;
+}
+
+.body-all-orders>tr:hover{
+  background-color: #5E918F;
+  color:white;
+}
+
+.head-active{
+  width:10%;
+}
+
+#td-amount{
+  width:15%;
+}
+
 .bg-red{
   background-color:#F79C9C;
 }
@@ -57,6 +91,15 @@ body {
 
 .bg-green:hover{
   background-color:#5E9736;
+}
+
+.small-btn{
+  font-family: "Kanit", "Open Sans", sans-serif;
+  display: inline-block;
+  font-size: 16px;
+  padding: 5px 10px;
+  position: relative;
+  border:1px solid black;
 }
 
 .normal-btn{

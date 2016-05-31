@@ -50,7 +50,7 @@ Route::get('log.out', function(){
 });
 
 Route::get('or.der', function(){
-	return "order";
+	return redirect("admin/orders");
 });
 
 Route::get('man.men', function(){
@@ -84,20 +84,28 @@ Route::group(['prefix' => 'admin'], function(){
 	Route::group(['namespace' => 'Admins'], function(){
 		Route::get('login', 'LoginController@getIndex');
 		Route::post('login', 'LoginController@login');
-		Route::get('logout', 'LoginController@logout');
-	});
 
-	//////////////////////////////////////////////////////////////////////////////
 
-	/**
-	 * ROUTE FOR MIDDLEWARE BY 'auth'
-	 */
+		/**
+		 * ROUTE FOR MIDDLEWARE BY 'auth'
+		 */
 
-	Route::group(['middleware' => 'auth'], function(){
+		Route::group(['middleware' => 'auth'], function(){
+			
+			Route::get('logout', 'LoginController@logout');
+
+			Route::get('dashboard', function(){
+				return "dashboard";
+			});
+
+			Route::get("orders", "OrdersController@getIndex");
+		});
 		
+		//////////////////////////////////////////////////////////////////////////////
 	});
-	
+
 	//////////////////////////////////////////////////////////////////////////////
+
 
 
 });
