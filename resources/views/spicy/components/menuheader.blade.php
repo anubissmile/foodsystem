@@ -14,7 +14,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul id="top-menu" class="nav navbar-nav navbar-right mu-main-nav">
-            <li><a href="{{url('ho.me')}}">HOME</a></li>                
+            <li><a href="{{url('home')}}" data-h='{{url("/")}}' class='make-link'>HOME</a></li>
             <li><a href="#mu-make-order">ORDER</a></li>
             <!-- <li><a href="#mu-gallery">GALLERY</a></li>
             <li><a href="#mu-about-us">ABOUT US</a></li>                       

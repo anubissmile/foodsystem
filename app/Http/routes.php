@@ -57,8 +57,10 @@ Route::get('man.men', function(){
 	return "manage menu";
 });
 
-Route::get('ho.me', function(){
-	return redirect('/');
+Route::get('home', function(){
+	return view('spicy.welcome', [
+		'title' => "Welcome to Noodlepark."
+	]);
 });
 
 //////////////////////////////////////////////////////////////////////////////

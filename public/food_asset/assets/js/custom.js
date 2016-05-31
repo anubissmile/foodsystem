@@ -248,17 +248,26 @@ jQuery(function($){
   /*  13. PRELOADER
   /* ----------------------------------------------------------- */
 
-   jQuery(window).load(function() { // makes sure the whole site is loaded      
+   jQuery(document).ready(function() { // makes sure the whole site is loaded      
       jQuery('#aa-preloader-area').delay(300).fadeOut('slow'); // will fade out      
     })
    
    $(document).ready(function(){
       orderTask();
-
+      makeLink();
    });
 
   
 });
+
+function makeLink(){
+  $('.make-link').hover(function(event) {
+    var a = $(this).attr('data-h');
+    $(this).click(function(){
+      location.href = a;
+    });
+  });
+}
 
 function setLabelPrice(price,amount,sum,summary){
   // sum = price * amount; 
