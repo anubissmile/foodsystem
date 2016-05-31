@@ -1,3 +1,4 @@
+
 <header id="mu-header">
 	    <nav class="navbar navbar-default mu-main-navbar" role="navigation">  
       <div class="container">
@@ -14,15 +15,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul id="top-menu" class="nav navbar-nav navbar-right mu-main-nav">
-            <li><a href="{{url('home')}}" data-h='{{url("/")}}' class='make-link'>HOME</a></li>
+            <li><a href="#mu-slider">TOP</a></li>
             <li><a href="#mu-make-order">ORDER</a></li>
-            <!-- <li><a href="#mu-gallery">GALLERY</a></li>
-            <li><a href="#mu-about-us">ABOUT US</a></li>                       
-            <li><a href="#mu-restaurant-menu">MENU</a></li>                       
-            <li><a href="#mu-reservation">RESERVATION</a></li>       
-            <li><a href="#mu-chef">OUR TEAM</a></li>
-            <li><a href="#mu-latest-news">BLOG</a></li> 
-            <li><a href="#mu-contact">CONTACT</a></li>  -->
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown">
                 PAGE 
