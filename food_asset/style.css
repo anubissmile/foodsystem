@@ -23,7 +23,6 @@
 #CHEF SECTION
 #LATEST NEWS SECTION
 #CONTACT SECTION
-#MAKE ORDER SECTION
 #MAP SECTION
 #BLOG PAGE
 #ERROR  PAGE
@@ -62,7 +61,7 @@ a:focus {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Kanit", "Open Sans", sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 h2 {
@@ -78,7 +77,7 @@ img {
 
 .mu-readmore-btn {
   background-color: #fff;
-  font-family: "Kanit", "Open Sans", sans-serif;
+  font-family: "Open Sans", sans-serif;
   display: inline-block;
   font-size: 16px;
   padding: 15px 35px;
@@ -91,11 +90,11 @@ img {
 }
 .mu-readmore-btn::after {
   bottom: 5px;
+  content: "";
   left: 5px;
+  position: absolute;
   right: 5px;
   top: 5px;
-  position: absolute;
-  content: "";
   -webkit-transition: all 0.2s;
   -moz-transition: all 0.2s;
   -ms-transition: all 0.2s;
@@ -105,34 +104,13 @@ img {
 .mu-readmore-btn:hover, .mu-readmore-btn:focus {
   color: #fff;
 }
-.mu-readmore-btn:hover::after, .mu-readmore-btn:focus::after, {
+.mu-readmore-btn:hover::after, .mu-readmore-btn:focus::after {
   bottom: 0px;
   content: "";
   left: 0px;
   right: 0px;
   top: 0px;
 }
-
-.mu-readmore-btn-active{
-  font-family: "Kanit", sans-serif;
-  display: inline-block;
-  position:relative;
-  font-size: 16px;
-  padding: 13px 33px;
-  color: #fff;
-  border: 2px solid #c1a35f;
-  background-color: #c1a35f;
-  -webkit-transition: all 0.2s;
-  -moz-transition: all 0.2s;
-  -ms-transition: all 0.2s;
-  -o-transition: all 0.2s;
-  transition: all 0.2s;
-}
-
-
-
-
-
 
 .mu-browsmore-btn {
   background-color: #fff;
@@ -1394,94 +1372,6 @@ RESERVATION SECTION
   text-align: center;
 }
 #mu-contact .mu-contact-area .mu-contact-content .mu-contact-right .mu-contact-widget address p span {
-  display: inline-block;
-  margin-right: 20px;
-  min-width: 130px;
-}
-
-/*==================
- MAKE ORDER SECTION
-====================*/
-#mu-make-order {
-  display: inline;
-  float: left;
-  padding: 100px 0;
-  width: 100%;
-}
-#mu-make-order .mu-make-order-area {
-  display: inline;
-  float: left;
-  width: 100%;
-}
-#mu-make-order .mu-make-order-area .mu-make-order-content {
-  display: inline;
-  float: left;
-  margin-top: 30px;
-  width: 100%;
-}
-#mu-make-order .mu-make-order-area .mu-make-order-content .mu-make-order-left {
-  display: inline;
-  float: left;
-  font-family: "Open Sans", sans-serif;
-  width: 100%;
-}
-#mu-make-order .mu-make-order-area .mu-make-order-content .mu-make-order-left .form-group {
-  margin-bottom: 25px;
-}
-#mu-make-order .mu-make-order-area .mu-make-order-content .mu-make-order-left .form-group label {
-  font-size: 16px;
-  margin-bottom: 8px;
-  letter-spacing: 0.5px;
-}
-#mu-make-order .mu-make-order-area .mu-make-order-content .mu-make-order-left .mu-make-order-form input[type="text"],
-#mu-make-order .mu-make-order-area .mu-make-order-content .mu-make-order-left .mu-make-order-form input[type="email"] {
-  color: #000;
-  border-radius: 0;
-  height: 40px;
-}
-#mu-make-order .mu-make-order-area .mu-make-order-content .mu-make-order-left .mu-make-order-form input[type="text"]:focus,
-#mu-make-order .mu-make-order-area .mu-make-order-content .mu-make-order-left .mu-make-order-form input[type="email"]:focus {
-  box-shadow: none;
-}
-#mu-make-order .mu-make-order-area .mu-make-order-content .mu-make-order-left .mu-make-order-form textarea {
-  color: #000;
-  border-radius: 0;
-  padding: 10px;
-}
-#mu-make-order .mu-make-order-area .mu-make-order-content .mu-make-order-left .mu-make-order-form textarea:focus {
-  box-shadow: none;
-}
-#mu-make-order .mu-make-order-area .mu-make-order-content .mu-make-order-right {
-  display: inline;
-  float: left;
-  padding: 0 30px;
-  width: 100%;
-}
-#mu-make-order .mu-make-order-area .mu-make-order-content .mu-make-order-right .mu-make-order-widget {
-  display: inline;
-  float: left;
-  margin-bottom: 25px;
-  width: 100%;
-}
-#mu-make-order .mu-make-order-area .mu-make-order-content .mu-make-order-right .mu-make-order-widget h3 {
-  margin-top: 0px;
-}
-#mu-make-order .mu-make-order-area .mu-make-order-content .mu-make-order-right .mu-make-order-widget > p {
-  letter-spacing: 0.5px;
-  line-height: 26px;
-}
-#mu-make-order .mu-make-order-area .mu-make-order-content .mu-make-order-right .mu-make-order-widget address {
-  margin-top: 20px;
-}
-#mu-make-order .mu-make-order-area .mu-make-order-content .mu-make-order-right .mu-make-order-widget address p {
-  letter-spacing: 0.5px;
-}
-#mu-make-order .mu-make-order-area .mu-make-order-content .mu-make-order-right .mu-make-order-widget address p i {
-  margin-right: 10px;
-  width: 20px;
-  text-align: center;
-}
-#mu-make-order .mu-make-order-area .mu-make-order-content .mu-make-order-right .mu-make-order-widget address p span {
   display: inline-block;
   margin-right: 20px;
   min-width: 130px;

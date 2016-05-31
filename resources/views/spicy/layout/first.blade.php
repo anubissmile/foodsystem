@@ -31,57 +31,54 @@
   <!-- Start header section -->
   @include('spicy.components.menuheader')
   <!-- End header section -->
+ 
 
   <!-- Start slider  -->
   @include('spicy.components.slider')
   <!-- End slider  -->
 
-  <!-- Start Order -->
-  @include('spicy.components.make_order')
-  <!-- End Order -->
-
-  <!-- Start Gallery -->
-  {{-- @include('spicy.components.gallery') --}}
-  <!-- End Gallery -->
-  
   <!-- Start About us -->
-  {{-- @include('spicy.components.aboutus') --}}
+  @include('spicy.components.aboutus')
   <!-- End About us -->
 
   <!-- Start Counter Section -->
-  {{-- @include('spicy.components.counter') --}}
+  @include('spicy.components.counter')
   <!-- End Counter Section --> 
 
   <!-- Start Restaurant Menu -->
-  {{-- @include('spicy.components.our_menu') --}}
+  @include('spicy.components.our_menu')
   <!-- End Restaurant Menu -->
 
   <!-- Start Reservation section -->
-  {{-- @include('spicy.components.reservation') --}}  
+  @include('spicy.components.reservation')  
   <!-- End Reservation section -->
+
+  <!-- Start Gallery -->
+  @include('spicy.components.gallery')
+  <!-- End Gallery -->
   
   <!-- Start Client Testimonial section -->
-  {{-- @include('spicy.components.client_testimonial') --}}
+  @include('spicy.components.client_testimonial')
   <!-- End Client Testimonial section -->
 
   <!-- Start Subscription section -->
-  {{-- @include('spicy.components.subscription') --}}
+  @include('spicy.components.subscription')
   <!-- End Subscription section -->
 
   <!-- Start Chef Section -->
-  {{-- @include('spicy.components.chef') --}}
+  @include('spicy.components.chef')
   <!-- End Chef Section -->
 
   <!-- Start Latest News -->
-  {{-- @include('spicy.components.latest_news') --}}
+  @include('spicy.components.latest_news')
   <!-- End Latest News -->
 
   <!-- Start Contact section -->
-  {{-- @include('spicy.components.contact') --}}
+  @include('spicy.components.contact')
   <!-- End Contact section -->
 
   <!-- Start Map section -->
-  {{-- @include('spicy.components.map') --}}
+  @include('spicy.components.map')
   <!-- End Map section -->
 
   <!-- Start Footer -->

@@ -22,4 +22,3 @@
     <link href='https://fonts.googleapis.com/css?family=Tangerine' rel='stylesheet' type='text/css'>        
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Prata' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Kanit:400,800,700&subset=thai,latin' rel='stylesheet' type='text/css'>
