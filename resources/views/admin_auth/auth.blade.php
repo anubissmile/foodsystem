@@ -27,6 +27,7 @@
 	      <input type="password" name="pwd" value="" placeholder="password"/>
 	      <button>login</button>
 	      <!-- <p class="message">Not registered? <a href="#">Create an account</a></p> -->
+	      <p class="message"><a href="{{url('/')}}">GO HOME.</a></p>
 	    </form>
 	  </div>
 	</div>
