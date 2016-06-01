@@ -27,7 +27,7 @@ class HomeController extends Controller
 	    			['create_date', $today],
 	    			['status', 'wait']
 	    		])
-	    		->orderBy('created_at', 'desc')
+	    		->orderBy('created_at', 'asc')
 	    		->get();
 
 	    	////////////////////////////////////////////////////////////////////////////////
@@ -38,5 +38,38 @@ class HomeController extends Controller
 		'orders' => $allOrder
 		]);
 
+    }
+
+    public function completeOrders(Request $request){
+    	if($request->ajax()){
+
+    		$data = $request->all();
+    		$result = DB::table('tb_order_transaction')
+    			->where('code',$data['code'])
+    			->update(['status' => $data['method']]);
+
+			$count = DB::table('tb_order_transaction')
+				->where([
+					['create_date', date("Y-m-d")],
+					['status', 'wait']
+				])->count();
+
+    		if($result){
+		    	$ds = [
+		    		"status" => true,
+		    		"describe" => "ดำเนินการเสร็จเรียบร้อย",
+		    		"count" => $count
+		    	];
+    		}else{
+		    	$ds = [
+		    		"status" => false,
+		    		"describe" => "การดำเนินการผิดพลาดโปรดลองใหม่ภายหลัง",
+		    		"count" => $count
+		    	];
+    		}
+
+	    	return json_encode($ds);
+
+    	}
     }
 }

@@ -3,12 +3,12 @@
       <div class="row">
         <div class="col-md-12">
           <div class="mu-all-order-area">
-            <div class="mu-title">
+            <!-- <div class="mu-title">
               <span class="mu-subtitle">All Orders</span>
               <h2>รายการสั่งอาหาร</h2>
               <i class="fa fa-spoon"></i>              
               <span class="mu-title-bar"></span>
-            </div>
+            </div> -->
             <div class="mu-all-order-content">
               <!-- <div class="row" id=".noodle" data-mustselect="true" data-type="select">
                 <h3>เลือกเส้น</h3>
@@ -38,14 +38,16 @@
                       <td>{{$order->list}}</td>
                       <td>{{$order->amount}}</td>
                       <td>
-                        <button class="complete small-btn bg-green" 
-                          data-code="{{$order->code}}">
+                        <button class="order-action small-btn bg-green" 
+                          data-code="{{$order->code}}"
+                          data-action="complete">
                           <span class="glyphicon glyphicon-ok"></span>
                         </button>
                       </td>
                       <td>
-                        <button class="abort small-btn bg-red" 
-                          data-code="{{$order->code}}">
+                        <button class="order-action small-btn bg-red" 
+                          data-code="{{$order->code}}"
+                          data-action="abort">
                           <span class="glyphicon glyphicon-remove"></span>
                         </button>
                       </td>
@@ -53,6 +55,7 @@
                   @endforeach
                   </tbody>
                 </table>
+                <input type="hidden" name="_token" value="{{ csrf_token() }}" class="csrf" id="csrf">
               </div>
             </div>
           </div>
