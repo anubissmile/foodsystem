@@ -3,12 +3,12 @@
       <div class="row">
         <div class="col-md-12">
           <div class="mu-all-order-area">
-            <div class="mu-title">
+            <!-- <div class="mu-title">
               <span class="mu-subtitle">All Orders</span>
               <h2>รายการสั่งอาหาร</h2>
               <i class="fa fa-spoon"></i>              
               <span class="mu-title-bar"></span>
-            </div>
+            </div> -->
             <div class="mu-all-order-content">
               <!-- <div class="row" id=".noodle" data-mustselect="true" data-type="select">
                 <h3>เลือกเส้น</h3>
