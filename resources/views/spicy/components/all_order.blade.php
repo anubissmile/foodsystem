@@ -38,14 +38,16 @@
                       <td>{{$order->list}}</td>
                       <td>{{$order->amount}}</td>
                       <td>
-                        <button class="complete small-btn bg-green" 
-                          data-code="{{$order->code}}">
+                        <button class="order-action small-btn bg-green" 
+                          data-code="{{$order->code}}"
+                          data-action="complete">
                           <span class="glyphicon glyphicon-ok"></span>
                         </button>
                       </td>
                       <td>
-                        <button class="abort small-btn bg-red" 
-                          data-code="{{$order->code}}">
+                        <button class="order-action small-btn bg-red" 
+                          data-code="{{$order->code}}"
+                          data-action="abort">
                           <span class="glyphicon glyphicon-remove"></span>
                         </button>
                       </td>
@@ -53,6 +55,7 @@
                   @endforeach
                   </tbody>
                 </table>
+                <input type="hidden" name="_token" value="{{ csrf_token() }}" class="csrf" id="csrf">
               </div>
             </div>
           </div>

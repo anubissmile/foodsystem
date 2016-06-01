@@ -21,10 +21,7 @@
               <li><a href="#mu-all-order">ALL ORDER</a></li>
             @endif
             <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown">
-                PAGE 
-                <span class="caret"></span>
-              </a>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="blog-archive.html">PAGE <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">                
                 <!-- <li><a href="blog-archive.html">BLOG</a></li>
                           <li><a href="blog-single.html">BLOG DETAILS</a></li>

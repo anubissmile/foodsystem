@@ -263,16 +263,40 @@ jQuery(function($){
 
 function allOrderListener(){
 
-  $('.complete').click(function(){
+  $('.order-action').click(function(){
+    if(confirm("ยืนยันรายการอีกครั้ง")){
 
-    var countList = $('#td-list');
-    var count = parseInt(countList.attr('data-count'));
-    alert(count);
-    count--;
-    countList.html(count + " รายการ").attr("data-count", count);
-    var code = $(this).attr('data-code');
-    // alert("com " + code);
-    $("."+code).fadeOut('slow');
+      var token = $("#csrf").val();
+      var code = $(this).attr('data-code');
+      var action = $(this).attr('data-action');
+
+      $.ajax({
+        url : 'complete/orders',
+        type :'post',
+        dataType : 'json',
+        data :{
+          "_token" : token,
+          "code" : code,
+          "method" : action
+        },
+        success : function(xhr,status,data){
+          if(status == 'success'){
+            if(xhr.status){
+              $("."+code).fadeOut('slow');
+              $("#td-list").attr("data-count",xhr.count).html(xhr.count + " รายการ");
+            }else{
+              alert(xhr.describe);
+              return false;
+            }
+          }
+        },
+        error : function(xhr,status,data){
+          alert(status);
+          alert(data.responseText);
+        }
+      });
+
+    }
 
   });
 
