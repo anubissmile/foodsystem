@@ -8,9 +8,9 @@
           <!-- Top slider content -->
           <div class="mu-top-slider-content">
             <span class="mu-slider-small-title">Welcome</span>
-            <h2 class="mu-slider-title">TO THE SPICYX</h2>
+            <h2 class="mu-slider-title">TO THE GOODBAR.</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque voluptatem accusamus non quidem, deleniti optio.</p>           
-            <a href="#" class="mu-readmore-btn-slide">READ MORE</a>
+            <a href="#mu-make-order" class="mu-readmore-btn-slide">ORDER NOW!</a>
           </div>
           <!-- / Top slider content -->
         </div>
@@ -21,9 +21,9 @@
           <!-- Top slider content -->
           <div class="mu-top-slider-content">
             <span class="mu-slider-small-title">The Real</span>
-            <h2 class="mu-slider-title">GREEN FOODS</h2>
+            <h2 class="mu-slider-title">THAI NOODLE.</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque voluptatem accusamus non quidem, deleniti optio.</p>           
-            <a href="#" class="mu-readmore-btn-slide">READ MORE</a>
+            <a href="#mu-make-order" class="mu-readmore-btn-slide">ORDER NOW!</a>
           </div>
           <!-- / Top slider content -->
         </div>
@@ -34,9 +34,9 @@
           <!-- Top slider content -->
           <div class="mu-top-slider-content">
             <span class="mu-slider-small-title">Delicious</span>
-            <h2 class="mu-slider-title">SPICY MASALAS</h2>
+            <h2 class="mu-slider-title">TASTY! & YUMMY!</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque voluptatem accusamus non quidem, deleniti optio.</p>           
-            <a href="#" class="mu-readmore-btn-slide">READ MORE</a>
+            <a href="#mu-make-order" class="mu-readmore-btn-slide">ORDER NOW!</a>
           </div>
           <!-- / Top slider content -->
         </div>
