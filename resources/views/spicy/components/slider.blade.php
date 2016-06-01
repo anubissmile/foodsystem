@@ -10,7 +10,7 @@
             <span class="mu-slider-small-title">Welcome</span>
             <h2 class="mu-slider-title">TO THE SPICYX</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque voluptatem accusamus non quidem, deleniti optio.</p>           
-            <a href="#" class="mu-readmore-btn">READ MORE</a>
+            <a href="#" class="mu-readmore-btn-slide">READ MORE</a>
           </div>
           <!-- / Top slider content -->
         </div>
@@ -23,7 +23,7 @@
             <span class="mu-slider-small-title">The Real</span>
             <h2 class="mu-slider-title">GREEN FOODS</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque voluptatem accusamus non quidem, deleniti optio.</p>           
-            <a href="#" class="mu-readmore-btn">READ MORE</a>
+            <a href="#" class="mu-readmore-btn-slide">READ MORE</a>
           </div>
           <!-- / Top slider content -->
         </div>
@@ -36,7 +36,7 @@
             <span class="mu-slider-small-title">Delicious</span>
             <h2 class="mu-slider-title">SPICY MASALAS</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque voluptatem accusamus non quidem, deleniti optio.</p>           
-            <a href="#" class="mu-readmore-btn">READ MORE</a>
+            <a href="#" class="mu-readmore-btn-slide">READ MORE</a>
           </div>
           <!-- / Top slider content -->
         </div>

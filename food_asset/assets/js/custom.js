@@ -313,8 +313,8 @@ function makeLink(){
 
 function setLabelPrice(price,amount,sum,summary){
   // sum = price * amount; 
-  $("#price").html(price + " ฿");
-  $("#sum").html(sum + " ฿");
+  $("#price").html("ราคาต่อชาม " + price + "฿");
+  $("#sum").html("รวมทั้งสิ้น " + sum + "฿");
   $("#amount").html(amount + " ชาม");
 
   // MAKE SUMMARY
