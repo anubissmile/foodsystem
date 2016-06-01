@@ -21,6 +21,19 @@ Author URI : http://www.markups.io/
   border-color: #c1a35f;
 }
 
+.mu-readmore-btn-slide {
+  color: #c1a35f;
+}
+.mu-readmore-btn-slide::after {
+  border: 2px solid #c1a35f;
+}
+.mu-readmore-btn-slide:hover, .mu-readmore-btn-slide:focus {
+  background-color: #c1a35f;
+}
+.mu-readmore-btn-slide:hover::after, .mu-readmore-btn-slide:focus::after {
+  border-color: #c1a35f;
+}
+
 .mu-browsmore-btn {
   color: #c1a35f;
 }
