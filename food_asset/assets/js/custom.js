@@ -386,48 +386,44 @@ function orderTask(){
     if(str != ""){
       alert("คุณจำเป็นต้องเลือกรายการเหล่านี้\n" + str);
     }else{
+
       /**
       * SENDING ORDER.
-      **/
-      if(confirm("โปรดยืนยันการรายการอาหาร!")){
-        // alert("amount " + amount + " \nprice " + price + "\nsum " + sum + "\nsummary " + summary);
+      **/      
+      var token = $("#_token").val();
 
-        var token = $("#_token").val();
-
-        $.ajax({
-          url : 'make/orders',
-          type : 'post',
-          dataType : 'json',
-          data : {
-            "_token" : token,
-            "amount" : amount,
-            "price" : price,
-            "total" : sum,
-            "summary" : $("#lb-result").html()
-          },
-          success : function(xhr,status,data){
-            //ON SUCCESS
-            /*alert("On Success " + xhr.sss);
-            alert("On Success " + data.responseText);
-            alert("On Success " + status);*/
-            if(status = 'success'){
-              alert(xhr.describe);
-              $("#cancel").click();
-              $('html, body').animate({
-                    scrollTop: $("#mu-make-order").offset().top
-              }, 2000);
-            }
-          },
-          error : function(xhr,status,data){
-            /*alert("On Success " + xhr.sss);
-            alert("On Success " + data.responseText);
-            alert("On Success " + status);*/
-            alert(status);
-            location.reload();
+      $.ajax({
+        url : 'make/orders',
+        type : 'post',
+        dataType : 'json',
+        data : {
+          "_token" : token,
+          "amount" : amount,
+          "price" : price,
+          "total" : sum,
+          "summary" : $("#lb-result").html()
+        },
+        success : function(xhr,status,data){
+          //ON SUCCESS
+          /*alert("On Success " + xhr.sss);
+          alert("On Success " + data.responseText);
+          alert("On Success " + status);*/
+          if(status = 'success'){
+            alert(xhr.describe);
+            $("#cancel").click();
+            $('html, body').animate({
+                  scrollTop: $("#mu-make-order").offset().top
+            }, 2000);
           }
-        });
-        
-      }
+        },
+        error : function(xhr,status,data){
+          /*alert("On Success " + xhr.sss);
+          alert("On Success " + data.responseText);
+          alert("On Success " + status);*/
+          // alert(status);
+          location.reload();
+        }
+      });
     }
 
   });

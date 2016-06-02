@@ -11,6 +11,7 @@ use App\Http\Requests;
  */
 use Auth;
 use DB;
+use App;
 
 class HomeController extends Controller
 {
@@ -71,5 +72,23 @@ class HomeController extends Controller
 	    	return json_encode($ds);
 
     	}
+    }
+
+    public function exportPDF(){
+
+    	$html = '<style>
+					.page-break {
+					    page-break-after: always;
+					}
+					</style>
+					<h1>Page 1</h1>
+					<div class="page-break"></div>
+					<h1>Page 2</h1>';
+
+    	$pdf = App::make('dompdf.wrapper');
+    	$pdf->loadHTML($html)
+    		->setPaper('a4', 'landscape');
+    	return $pdf->stream();
+
     }
 }

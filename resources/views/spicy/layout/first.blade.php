@@ -34,7 +34,7 @@
   <!-- End header section -->
 
   <!-- Start slider  -->
-  @include('spicy.components.slider')
+  {{--@include('spicy.components.slider')--}}
   <!-- End slider  -->
 
 
@@ -43,9 +43,15 @@
   <!-- End Order -->
 
   @if(Auth::check())
+
     <!-- Start All Order -->
     @include('spicy.components.all_order')
     <!-- End All Order -->
+
+    <!-- Start Daily Sales -->
+    @include('spicy.components.daily_sales')
+    <!-- End Daily Sales -->
+
   @endif
   
 

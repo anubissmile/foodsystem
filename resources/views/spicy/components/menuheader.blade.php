@@ -15,10 +15,11 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul id="top-menu" class="nav navbar-nav navbar-right mu-main-nav">
-            <li><a href="#mu-slider">HOME</a></li>
+            <!-- <li><a href="#mu-slider">HOME</a></li> -->
             <li><a href="#mu-make-order">MAKE ORDER</a></li>
             @if(Auth::check())
               <li><a href="#mu-all-order">ALL ORDER</a></li>
+              <li><a href="#mu-daily-sales">DAILY SALES</a></li>
             @endif
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="blog-archive.html">PAGE <span class="caret"></span></a>

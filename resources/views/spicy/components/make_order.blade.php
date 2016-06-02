@@ -21,54 +21,54 @@
               </div>
               <div class="row" id=".soup" data-mustselect="true" data-type="select">
                 <h3>เลือกน้ำซุป</h3>
-                <div class="soup mu-readmore-btn" data-price="30">ต้มยำน้ำข้น (30฿)</div>
-                <div class="soup mu-readmore-btn" data-price="30">ต้มยำน้ำใส (30฿)</div>
-                <div class="soup mu-readmore-btn" data-price="20">น้ำใส (20฿)</div>
-                <div class="soup mu-readmore-btn" data-price="20">เย็นตาโฟ (20฿)</div>
-                <div class="soup mu-readmore-btn" data-price="30">ต้มยำแห้ง (30฿)</div>
-                <div class="soup mu-readmore-btn" data-price="20">แห้ง (20฿)</div>
+                <div class="soup mu-readmore-btn" data-price="30">ต้มยำน้ำข้น</div>
+                <div class="soup mu-readmore-btn" data-price="20">ต้มยำน้ำใส</div>
+                <div class="soup mu-readmore-btn" data-price="20">น้ำใส</div>
+                <div class="soup mu-readmore-btn" data-price="20">เย็นตาโฟ</div>
+                <div class="soup mu-readmore-btn" data-price="20">ต้มยำแห้ง</div>
+                <div class="soup mu-readmore-btn" data-price="20">แห้ง</div>
               </div>
               <div class="row" id=".topping" data-mustselect="true" data-type="choice">
                 <h3>เลือกท็อปปิง (เลือกได้หลายรายการ)</h3>
                 <div class="topping mu-readmore-btn" data-price="0">ลูกชิ้นไก่</div>
                 <div class="topping mu-readmore-btn" data-price="0">ลูกชิ้นปลา</div>
                 <div class="topping mu-readmore-btn" data-price="0">เกี๊ยว</div>
-                <div class="topping mu-readmore-btn-disable" data-price="0"></div>
-                <div class="topping mu-readmore-btn-disable" data-price="0"></div>
+                <div class="topping mu-readmore-btn" data-price="0">หมูสับ</div>
+                <div class="topping mu-readmore-btn" data-price="0">ไข่ล้วน</div>
                 <div class="topping mu-readmore-btn-disable" data-price="0"></div>
               </div>
               <div class="row" id=".other" data-mustselect="false" data-type="choice">
                 <h3>คุณสมบัติอื่นๆ (เลือกได้หลายรายการ)</h3>
                 <div class="other mu-readmore-btn" data-price="0">ไม่ใส่ผัก</div>
-                <div class="other mu-readmore-btn" data-price="5">เพิ่มไข่ (5฿)</div>
-                <div class="other mu-readmore-btn-disable" data-price="0"></div>
-                <div class="other mu-readmore-btn-disable" data-price="0"></div>
+                <div class="other mu-readmore-btn" data-price="5">เพิ่มไข่</div>
+                <div class="extra mu-readmore-btn" data-price="5">พิเศษ ฿5</div>
+                <div class="extra mu-readmore-btn" data-price="30">ยกทัพ ฿30</div>
                 <div class="other mu-readmore-btn-disable" data-price="0"></div>
                 <div class="other mu-readmore-btn-disable" data-price="0"></div>
               </div>
-              <div class="row" id=".extra" data-mustselect="false" data-type="select">
+              <!-- <div class="row" id=".extra" data-mustselect="false" data-type="select">
                 <h3>พิเศษ</h3>
-                <div class="extra mu-readmore-btn" data-price="5">พิเศษ (5฿)</div>
-                <div class="extra mu-readmore-btn" data-price="30">ยกทัพ (30฿)</div>
                 <div class="extra mu-readmore-btn-disable" data-price="0"></div>
                 <div class="extra mu-readmore-btn-disable" data-price="0"></div>
                 <div class="extra mu-readmore-btn-disable" data-price="0"></div>
                 <div class="extra mu-readmore-btn-disable" data-price="0"></div>
-              </div>
+              </div> -->
               <div class="row" id=".amount" data-mustselect="false" data-type="hit">
                 <h3>จำนวน</h3>
-                <button id="plus" class="amount mu-readmore-btn" data-price="0">+</button>
-                <button id="minus" class="amount mu-readmore-btn" data-price="0">-</button>
+                <!-- <button id="plus" class="amount mu-readmore-btn" data-price="0">+</button>
+                <button id="minus" class="amount mu-readmore-btn" data-price="0">-</button> -->
                 <div id="amount" class="amount normal-btn bg-brown">1 ชาม</div>
                 <div id="price" class="price normal-btn bg-brown">1 บาท</div>
                 <div id="sum" class="sum normal-btn bg-brown">1 บาท</div>
+                <div id="amount" class="amount normal-btn bg-brown"></div>
+                <div id="amount" class="amount normal-btn bg-brown"></div>
                 <div id="amount" class="amount normal-btn bg-brown"></div>
               </div>
               <div class="row" id=".action" data-mustselect="false" data-type="none">
                 <h3>รายการอาหารที่สั่ง</h3>
                 <div id="lb-result" class="sum normal-list-name-btn bg-brown"></div>
-                <button id="order" class="action normal-btn bg-green">ORDER</button>
-                <button id="cancel" class="action normal-btn bg-red">CANCEL</button>
+                <button id="order" class="action normal-btn bg-green">สั่ง</button>
+                <button id="cancel" class="action normal-btn bg-red">ยกเลิก</button>
                 <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
               </div>
             </div>

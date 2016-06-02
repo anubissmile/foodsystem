@@ -27,6 +27,8 @@ Route::get('get-order', function(){
 	]);
 });
 
+Route::get('export', 'HomeController@exportPDF');
+
 //////////////////////////////////////////////////////////////////////////////
 
 

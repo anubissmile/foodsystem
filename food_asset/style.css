@@ -25,6 +25,7 @@
 #CONTACT SECTION
 #MAKE ORDER SECTION
 #ALL ORDER SECTION
+#DAILY SALES SECTION
 #MAP SECTION
 #BLOG PAGE
 #ERROR  PAGE
@@ -34,10 +35,29 @@
 /* BASE - Base tyles, Variables, Mixins, etc. */
 body {
   background-color: #ffffff;
-  font-family: "Prata", serif;
+  font-family: "Kanit", "Prata", serif;
   color: #333333;
   font-size: 15px;
   overflow-x: hidden;
+}
+
+
+.louse-input{
+  font-size: 25px;
+  width: 40%;
+  border: 1px solid #8a6d3b;
+  position:relative;
+  margin:5px 5px 5px 5px;
+}
+
+.louse-input:focus{
+  border: 2px solid #8a6d3b;
+  outline:none;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
 }
 
 .normal-table{
@@ -259,6 +279,7 @@ img {
 
 .mu-send-btn {
   background-color: transparent;
+  font-family: "Kanit", "Open Sans", sans-serif;
   border: 1px solid #ccc;
   display: inline-block;
   font-size: 16px;
@@ -328,7 +349,7 @@ img {
  NAVBAR SECTION
 ====================*/
 .mu-main-navbar {
-  background-color: transparent;
+  background-color: #403528;
   border: none;
   padding: 25px 0;
   border-radius: 0;
@@ -1630,6 +1651,7 @@ RESERVATION SECTION
   margin-right: 20px;
   min-width: 130px;
 }
+
 /*==================
  ALL ORDER SECTION
 ====================*/
@@ -1713,6 +1735,94 @@ RESERVATION SECTION
   text-align: center;
 }
 #mu-all-order .mu-all-order-area .mu-all-order-content .mu-all-order-right .mu-all-order-widget address p span {
+  display: inline-block;
+  margin-right: 20px;
+  min-width: 130px;
+}
+
+/*==================
+ DAILY SALES SECTION
+====================*/
+#mu-daily-sales {
+  display: inline;
+  float: left;
+  padding: 100px 0;
+  width: 100%;
+}
+#mu-daily-sales .mu-daily-sales-area {
+  display: inline;
+  float: left;
+  width: 100%;
+}
+#mu-daily-sales .mu-daily-sales-area .mu-daily-sales-content {
+  display: inline;
+  float: left;
+  margin-top: 30px;
+  width: 100%;
+}
+#mu-daily-sales .mu-daily-sales-area .mu-daily-sales-content .mu-daily-sales-left {
+  display: inline;
+  float: left;
+  font-family: "Open Sans", sans-serif;
+  width: 100%;
+}
+#mu-daily-sales .mu-daily-sales-area .mu-daily-sales-content .mu-daily-sales-left .form-group {
+  margin-bottom: 25px;
+}
+#mu-daily-sales .mu-daily-sales-area .mu-daily-sales-content .mu-daily-sales-left .form-group label {
+  font-size: 16px;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+#mu-daily-sales .mu-daily-sales-area .mu-daily-sales-content .mu-daily-sales-left .mu-daily-sales-form input[type="text"],
+#mu-daily-sales .mu-daily-sales-area .mu-daily-sales-content .mu-daily-sales-left .mu-daily-sales-form input[type="email"] {
+  color: #000;
+  border-radius: 0;
+  height: 40px;
+}
+#mu-daily-sales .mu-daily-sales-area .mu-daily-sales-content .mu-daily-sales-left .mu-daily-sales-form input[type="text"]:focus,
+#mu-daily-sales .mu-daily-sales-area .mu-daily-sales-content .mu-daily-sales-left .mu-daily-sales-form input[type="email"]:focus {
+  box-shadow: none;
+}
+#mu-daily-sales .mu-daily-sales-area .mu-daily-sales-content .mu-daily-sales-left .mu-daily-sales-form textarea {
+  color: #000;
+  border-radius: 0;
+  padding: 10px;
+}
+#mu-daily-sales .mu-daily-sales-area .mu-daily-sales-content .mu-daily-sales-left .mu-daily-sales-form textarea:focus {
+  box-shadow: none;
+}
+#mu-daily-sales .mu-daily-sales-area .mu-daily-sales-content .mu-daily-sales-right {
+  display: inline;
+  float: left;
+  padding: 0 30px;
+  width: 100%;
+}
+#mu-daily-sales .mu-daily-sales-area .mu-daily-sales-content .mu-daily-sales-right .mu-daily-sales-widget {
+  display: inline;
+  float: left;
+  margin-bottom: 25px;
+  width: 100%;
+}
+#mu-daily-sales .mu-daily-sales-area .mu-daily-sales-content .mu-daily-sales-right .mu-daily-sales-widget h3 {
+  margin-top: 0px;
+}
+#mu-daily-sales .mu-daily-sales-area .mu-daily-sales-content .mu-daily-sales-right .mu-daily-sales-widget > p {
+  letter-spacing: 0.5px;
+  line-height: 26px;
+}
+#mu-daily-sales .mu-daily-sales-area .mu-daily-sales-content .mu-daily-sales-right .mu-daily-sales-widget address {
+  margin-top: 20px;
+}
+#mu-daily-sales .mu-daily-sales-area .mu-daily-sales-content .mu-daily-sales-right .mu-daily-sales-widget address p {
+  letter-spacing: 0.5px;
+}
+#mu-daily-sales .mu-daily-sales-area .mu-daily-sales-content .mu-daily-sales-right .mu-daily-sales-widget address p i {
+  margin-right: 10px;
+  width: 20px;
+  text-align: center;
+}
+#mu-daily-sales .mu-daily-sales-area .mu-daily-sales-content .mu-daily-sales-right .mu-daily-sales-widget address p span {
   display: inline-block;
   margin-right: 20px;
   min-width: 130px;
@@ -2272,7 +2382,7 @@ RESERVATION SECTION
   background-color: #444;
   display: inline;
   float: left;
-  padding: 50px 0;
+  padding: 22px 0;
   width: 100%;
 }
 #mu-footer .mu-footer-area {
