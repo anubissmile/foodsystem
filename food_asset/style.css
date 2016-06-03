@@ -411,7 +411,7 @@ img {
 
 /*scrol to top*/
 .scrollToTop {
-  bottom: 60px;
+  bottom: 0px;
   color: #fff;
   display: none;
   font-size: 17px;
@@ -2382,7 +2382,7 @@ RESERVATION SECTION
   background-color: #444;
   display: inline;
   float: left;
-  padding: 22px 0;
+  padding: 5px 0;
   width: 100%;
 }
 #mu-footer .mu-footer-area {

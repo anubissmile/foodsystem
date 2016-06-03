@@ -100,7 +100,7 @@
   <!-- End Map section -->
 
   <!-- Start Footer -->
-  {{--@include('spicy.components.footer')--}}
+  @include('spicy.components.footer')
   <!-- End Footer -->
   
   <!-- Start Script -->

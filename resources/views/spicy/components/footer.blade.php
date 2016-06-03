@@ -10,9 +10,9 @@
             <a href="#"><span class="fa fa-linkedin"></span></a>
             <a href="#"><span class="fa fa-youtube"></span></a>
           </div> -->
-          <div class="mu-footer-copyright">
+          <!-- <div class="mu-footer-copyright">
             <p>Designed by <a rel="nofollow" href="http://www.markups.io/">MarkUps.io</a></p>
-          </div>         
+          </div>   -->       
         </div>
       </div>
       </div>
