@@ -12,6 +12,7 @@ use App\Http\Requests;
 use Auth;
 use DB;
 use App;
+use Wesarut;
 
 class HomeController extends Controller
 {
@@ -90,5 +91,41 @@ class HomeController extends Controller
     		->setPaper('a4', 'landscape');
     	return $pdf->stream();
 
+    }
+
+    public function dailySales($type = "today"){
+
+    	/**
+    	 * CHECK FOR TYPE OF METHOD.
+    	 */
+    	$cond = $dataset = null;
+
+    	switch ($type) {
+    		case 'today':
+    			/**
+    			 *	QUERY BY TODAY.
+    			 */
+    			$dataset = DB::table('tb_order_transaction')
+    				->where('create_date', date('Y-m-d'))->get();
+    			return view();
+    			break;
+    		case 'bydate':
+    			/**
+    			 *	QUERY BY DATE.
+    			 */
+				
+    			return 'bydate';
+    			break;
+    		case 'between':
+    			/**
+    			 *	QUERY BY DATE BETWEEN.
+    			 */
+				
+				return 'between';
+    			break;    		
+    		default:
+    			# code...
+    			break;
+    	}
     }
 }

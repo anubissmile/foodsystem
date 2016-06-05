@@ -103,6 +103,12 @@ Route::group(['prefix' => 'admin'], function(){
 		//////////////////////////////////////////////////////////////////////////////
 	});
 
+	/**
+	 * ROUTE IN PREFIX admins
+	 */
+	Route::get('daily-sales/{type?}', 'HomeController@dailySales');
+		// PLACING ? MARK TO MAKE OPTIONAL PARAMETERS
+
 	//////////////////////////////////////////////////////////////////////////////
 
 

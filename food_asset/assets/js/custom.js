@@ -344,7 +344,7 @@ function sumCategoryPrice(call){
 }
 
 function orderTask(){
-  var summary = "";
+  var summary = met = "";
   var pNoodle = pSoup = pTopping = pOther = pExtra = 0;
   var active = {".noodle":0, ".soup":0, ".topping":0, ".other":0, ".extra":0};
   var sum = price = 0;
@@ -450,6 +450,7 @@ function orderTask(){
 
 
   $('.mu-readmore-btn').click(function(event) {
+    var method = $(this).attr("data-method");
     var category = $(this).parent().attr("id");
     var type = $(this).parent().attr("data-type");
     var thisPrice = parseInt($(this).attr("data-price"));
@@ -461,14 +462,28 @@ function orderTask(){
         //Minus
         active[category] = 0;
         price -= thisPrice;
-        sum = price * amount; 
+
+        if(method == "increment"){
+          sum = price * amount; 
+        }else if(method == "replacement"){
+          price = sum = thisPrice;
+          met = "";
+        }
+        
         summary = setLabelPrice(price,amount,sum,summary);
       }else{
         $(this).toggleClass('mu-readmore-btn-active');
         //Plus
         active[category] = 1;
         price += thisPrice;
-        sum = price * amount; 
+        
+        if(method == "increment"){
+          sum = price * amount; 
+        }else if(method == "replacement"){
+          price = sum = thisPrice;
+          met = method;
+        }
+        
         summary = setLabelPrice(price,amount,sum,summary);
       }
     }else if(type === "select"){
@@ -502,7 +517,14 @@ function orderTask(){
             break;
         }
         active[category] = 0;
-        sum = price * amount; 
+        
+        if(method == "increment"){
+          sum = price * amount; 
+        }else if(method == "replacement"){
+          price = sum = thisPrice;
+          met = "";
+        }
+        
         summary = setLabelPrice(price,amount,sum,summary);
       }else{
         $(category).removeClass('mu-readmore-btn-active');
@@ -539,7 +561,14 @@ function orderTask(){
             break;
         }     
         active[category] = 1; 
-        sum = price * amount; 
+        
+        if(method == "increment"){
+          sum = price * amount; 
+        }else if(method == "replacement"){
+          price = sum = thisPrice;
+          met = met;
+        }
+        
         summary = setLabelPrice(price,amount,sum,summary);
       }
     }else if(type === "hit"){
