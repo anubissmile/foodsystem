@@ -352,7 +352,7 @@ img {
 .mu-main-navbar {
   background-color: #403528;
   border: none;
-  padding: 25px 0;
+  padding: 6px 0;
   border-radius: 0;
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
@@ -1582,7 +1582,7 @@ RESERVATION SECTION
 #mu-make-order .mu-make-order-area .mu-make-order-content {
   display: inline;
   float: left;
-  margin-top: 18px;
+  margin-top: -11px;
   width: 100%;
 }
 #mu-make-order .mu-make-order-area .mu-make-order-content .mu-make-order-left {
