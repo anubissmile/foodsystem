@@ -131,11 +131,11 @@ body {
   display: inline-block;
   vertical-align: top;
   position: relative;
-  font-size: 29px;
+  font-size: 22px;
   padding: 3.5% 5px 5px 5px;
-  margin: 3px 8px 6px 4px;
-  width: 165px;
-  height: 138px;
+  margin: 3px -1px 6px 4px;
+  width: 12.1%;
+  height: 115px;
 }
 
 .normal-list-name-btn{
@@ -146,11 +146,11 @@ body {
   display: inline-block;
   vertical-align: top;
   position: relative;
-  font-size: 28px;
+  font-size: 22px;
   padding: 1.5% 5px 5px 5px;
-  margin: 4px 8px 1px 0px;
-  width: 532px;
-  height: 138px;
+  margin: 4px 1px 1px 5px;
+  width: 442px;
+  height: 115px;
 }
 
 .no-padding {
@@ -194,19 +194,20 @@ img {
   background-color: #fff;
   font-family: "Kanit", "Open Sans", sans-serif;
   display: inline-block;
-  font-size: 29px;
+  font-size: 22px;
   padding: 47px 5px;
   position: relative;
   text-align:center;
   vertical-align: middle;
-  line-height: 31px ;   
-  width:15%;
-  height:140px;
+  line-height: 31px;
+  width: 13%;
+  height: 13%;
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
   -ms-transition: all 0.5s;
   -o-transition: all 0.5s;
   transition: all 0.5s;
+  margin: -1px -7px 0px 0px;
 }
 .mu-readmore-btn::after {
   bottom: 5px;
@@ -236,9 +237,9 @@ img {
   font-family: "Kanit", sans-serif;
   display: inline-block;
   position:relative;
-  font-size: 30px;
+  font-size: 25px;
   color: #fff;
-  border: 2px solid #c1a35f;
+  border: 0px solid #c1a35f;
   background-color: #c1a35f;
   -webkit-transition: all 0.2s;
   -moz-transition: all 0.2s;
@@ -253,9 +254,9 @@ img {
   border: 2px solid #c1a35f;
   display:inline-block;
   vertical-align:bottom;
-  margin:1px 6px 5px 5px;
-  width: 14.1%;
-  height:131px;
+  margin: 1px -1px 5px 5px;
+  width: 12.1%;
+  height: 115px;
 }
 
 
@@ -1581,7 +1582,7 @@ RESERVATION SECTION
 #mu-make-order .mu-make-order-area .mu-make-order-content {
   display: inline;
   float: left;
-  margin-top: 30px;
+  margin-top: 18px;
   width: 100%;
 }
 #mu-make-order .mu-make-order-area .mu-make-order-content .mu-make-order-left {
