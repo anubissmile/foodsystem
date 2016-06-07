@@ -146,8 +146,8 @@ body {
   display: inline-block;
   vertical-align: top;
   position: relative;
-  font-size: 22px;
-  padding: 1.5% 5px 5px 5px;
+  font-size: 21px;
+  padding: 0.5% 5px 5px 5px;
   margin: 4px 1px 1px 5px;
   width: 442px;
   height: 115px;
@@ -1584,6 +1584,7 @@ RESERVATION SECTION
   float: left;
   margin-top: -11px;
   width: 100%;
+  text-align:center;
 }
 #mu-make-order .mu-make-order-area .mu-make-order-content .mu-make-order-left {
   display: inline;
