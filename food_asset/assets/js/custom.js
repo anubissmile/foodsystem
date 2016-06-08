@@ -344,10 +344,10 @@ function sumCategoryPrice(call){
 }
 
 function orderTask(){
-  var summary = met = "";
+  var summary = "";
+  var replacement = increment = ext = sum = price = 0;
   var pNoodle = pSoup = pTopping = pOther = pExtra = 0;
   var active = {".noodle":0, ".soup":0, ".topping":0, ".other":0, ".extra":0};
-  var sum = price = 0;
   var amount = 1;
   var sumNoodle = sumCategoryPrice('.noodle');
   var sumSoup = sumCategoryPrice('.soup');
@@ -456,41 +456,79 @@ function orderTask(){
     var thisPrice = parseInt($(this).attr("data-price"));
 
     if(type === "choice"){
+      /**
+       *  TYPE IS CHOICE.
+       */
       var status = $(this).is('.mu-readmore-btn-active');
       if(status){
+        /**
+         *  MINUS
+         */
         $(this).toggleClass('mu-readmore-btn-active');
-        //Minus
         active[category] = 0;
         price -= thisPrice;
 
-        if(method == "increment"){
-          sum = price * amount; 
+        if(method == "additional"){
+          ext -= thisPrice;
+          sum = price * amount;
+        }else if(method == "increment"){
+          increment -= thisPrice;
+          if(replacement < 1){
+            sum = price * amount;
+          }
         }else if(method == "replacement"){
-          price = sum = thisPrice;
-          met = "";
+          replacement -= thisPrice;
+          if(replacement < 1){
+            price = sum = increment;
+          }else{
+            price = sum = replacement;
+          }
         }
+
+        if(ext > 0){
+          sum += ext;
+        }
+
+        // alert("inc :" + increment + "| rep :" + replacement);
         
         summary = setLabelPrice(price,amount,sum,summary);
       }else{
+        /**
+         *  PLUS
+         */
         $(this).toggleClass('mu-readmore-btn-active');
-        //Plus
         active[category] = 1;
         price += thisPrice;
-        
-        if(method == "increment"){
-          sum = price * amount; 
+
+        if(method == "additional"){
+          ext += thisPrice;
+          sum = price * amount;
+        }else if(method == "increment"){
+          increment += thisPrice;
+          if(replacement < 1){
+            sum = price * amount;
+          }
         }else if(method == "replacement"){
-          price = sum = thisPrice;
-          met = method;
+          replacement += thisPrice;
+          price = sum = replacement;
+        }
+
+        if(ext > 0){
+          sum += ext;
         }
         
         summary = setLabelPrice(price,amount,sum,summary);
       }
     }else if(type === "select"){
+      /**
+       *  TYPE IS SELECT.
+       */
       var status = $(this).is('.mu-readmore-btn-active');
       if(status){
+        /**
+         *  CLEAR.
+         */
         $(category).removeClass('mu-readmore-btn-active');
-        //Clear
         switch (category) {
           case ".noodle":
             pNoodle = 0;
@@ -517,19 +555,35 @@ function orderTask(){
             break;
         }
         active[category] = 0;
-        
-        if(method == "increment"){
-          sum = price * amount; 
+
+        if(method == "additional"){
+          ext -= thisPrice;
+          sum = price * amount;
+        }else if(method == "increment"){
+          increment -= thisPrice;
+          if(replacement < 1){
+            sum = price * amount;
+          }
         }else if(method == "replacement"){
-          price = sum = thisPrice;
-          met = "";
+          replacement -= thisPrice;
+          if(replacement < 1){
+            price = sum = increment;
+          }else{
+            price = sum = replacement;
+          }
+        }
+
+        if(ext > 0){
+          sum += ext;
         }
         
         summary = setLabelPrice(price,amount,sum,summary);
       }else{
+        /**
+         *  CLEAR THEN PLUS.
+         */
         $(category).removeClass('mu-readmore-btn-active');
         $(this).toggleClass('mu-readmore-btn-active');
-        //Clear then Plus
         switch (category) {
           case ".noodle":
             price -= pNoodle;
@@ -561,12 +615,22 @@ function orderTask(){
             break;
         }     
         active[category] = 1; 
-        
-        if(method == "increment"){
-          sum = price * amount; 
+
+        if(method == "additional"){
+          ext += thisPrice;
+          sum = price * amount;
+        }else if(method == "increment"){
+          increment += thisPrice;
+          if(replacement < 1){
+            sum = price * amount;
+          }
         }else if(method == "replacement"){
-          price = sum = thisPrice;
-          met = met;
+          replacement += thisPrice;
+          price = sum = replacement;
+        }
+
+        if(ext > 0){
+          sum += ext;
         }
         
         summary = setLabelPrice(price,amount,sum,summary);
