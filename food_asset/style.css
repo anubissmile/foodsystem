@@ -25,6 +25,7 @@
 #CONTACT SECTION
 #MAKE ORDER SECTION
 #ALL ORDER SECTION
+#DAILY SALES SECTION
 #MAP SECTION
 #BLOG PAGE
 #ERROR  PAGE
@@ -34,10 +35,29 @@
 /* BASE - Base tyles, Variables, Mixins, etc. */
 body {
   background-color: #ffffff;
-  font-family: "Prata", serif;
+  font-family: "Kanit", "Prata", serif;
   color: #333333;
   font-size: 15px;
   overflow-x: hidden;
+}
+
+
+.louse-input{
+  font-size: 25px;
+  width: 40%;
+  border: 1px solid #8a6d3b;
+  position:relative;
+  margin:5px 5px 5px 5px;
+}
+
+.louse-input:focus{
+  border: 2px solid #8a6d3b;
+  outline:none;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
 }
 
 .normal-table{
@@ -111,11 +131,11 @@ body {
   display: inline-block;
   vertical-align: top;
   position: relative;
-  font-size: 29px;
+  font-size: 22px;
   padding: 3.5% 5px 5px 5px;
-  margin: 3px 8px 6px 4px;
-  width: 165px;
-  height: 138px;
+  margin: 3px -1px 6px 4px;
+  width: 12.1%;
+  height: 115px;
 }
 
 .normal-list-name-btn{
@@ -126,11 +146,11 @@ body {
   display: inline-block;
   vertical-align: top;
   position: relative;
-  font-size: 28px;
-  padding: 1.5% 5px 5px 5px;
-  margin: 4px 8px 1px 0px;
-  width: 707px;
-  height: 138px;
+  font-size: 21px;
+  padding: 0.5% 5px 5px 5px;
+  margin: 4px 1px 1px 5px;
+  width: 442px;
+  height: 115px;
 }
 
 .no-padding {
@@ -174,19 +194,20 @@ img {
   background-color: #fff;
   font-family: "Kanit", "Open Sans", sans-serif;
   display: inline-block;
-  font-size: 29px;
+  font-size: 22px;
   padding: 47px 5px;
   position: relative;
   text-align:center;
   vertical-align: middle;
-  line-height: 31px ;   
-  width:15%;
-  height:140px;
+  line-height: 31px;
+  width: 13%;
+  height: 13%;
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
   -ms-transition: all 0.5s;
   -o-transition: all 0.5s;
   transition: all 0.5s;
+  margin: -1px -7px 0px 0px;
 }
 .mu-readmore-btn::after {
   bottom: 5px;
@@ -216,9 +237,9 @@ img {
   font-family: "Kanit", sans-serif;
   display: inline-block;
   position:relative;
-  font-size: 30px;
+  font-size: 25px;
   color: #fff;
-  border: 2px solid #c1a35f;
+  border: 0px solid #c1a35f;
   background-color: #c1a35f;
   -webkit-transition: all 0.2s;
   -moz-transition: all 0.2s;
@@ -233,9 +254,9 @@ img {
   border: 2px solid #c1a35f;
   display:inline-block;
   vertical-align:bottom;
-  margin:1px 6px 5px 5px;
-  width: 14.1%;
-  height:131px;
+  margin: 1px -1px 5px 5px;
+  width: 12.1%;
+  height: 115px;
 }
 
 
@@ -259,6 +280,7 @@ img {
 
 .mu-send-btn {
   background-color: transparent;
+  font-family: "Kanit", "Open Sans", sans-serif;
   border: 1px solid #ccc;
   display: inline-block;
   font-size: 16px;
@@ -328,9 +350,9 @@ img {
  NAVBAR SECTION
 ====================*/
 .mu-main-navbar {
-  background-color: transparent;
+  background-color: #403528;
   border: none;
-  padding: 25px 0;
+  padding: 6px 0;
   border-radius: 0;
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
@@ -390,7 +412,7 @@ img {
 
 /*scrol to top*/
 .scrollToTop {
-  bottom: 60px;
+  bottom: 0px;
   color: #fff;
   display: none;
   font-size: 17px;
@@ -1560,8 +1582,9 @@ RESERVATION SECTION
 #mu-make-order .mu-make-order-area .mu-make-order-content {
   display: inline;
   float: left;
-  margin-top: 30px;
+  margin-top: -11px;
   width: 100%;
+  text-align:center;
 }
 #mu-make-order .mu-make-order-area .mu-make-order-content .mu-make-order-left {
   display: inline;
@@ -1630,6 +1653,7 @@ RESERVATION SECTION
   margin-right: 20px;
   min-width: 130px;
 }
+
 /*==================
  ALL ORDER SECTION
 ====================*/
@@ -1713,6 +1737,94 @@ RESERVATION SECTION
   text-align: center;
 }
 #mu-all-order .mu-all-order-area .mu-all-order-content .mu-all-order-right .mu-all-order-widget address p span {
+  display: inline-block;
+  margin-right: 20px;
+  min-width: 130px;
+}
+
+/*==================
+ DAILY SALES SECTION
+====================*/
+#mu-daily-sales {
+  display: inline;
+  float: left;
+  padding: 100px 0;
+  width: 100%;
+}
+#mu-daily-sales .mu-daily-sales-area {
+  display: inline;
+  float: left;
+  width: 100%;
+}
+#mu-daily-sales .mu-daily-sales-area .mu-daily-sales-content {
+  display: inline;
+  float: left;
+  margin-top: 30px;
+  width: 100%;
+}
+#mu-daily-sales .mu-daily-sales-area .mu-daily-sales-content .mu-daily-sales-left {
+  display: inline;
+  float: left;
+  font-family: "Open Sans", sans-serif;
+  width: 100%;
+}
+#mu-daily-sales .mu-daily-sales-area .mu-daily-sales-content .mu-daily-sales-left .form-group {
+  margin-bottom: 25px;
+}
+#mu-daily-sales .mu-daily-sales-area .mu-daily-sales-content .mu-daily-sales-left .form-group label {
+  font-size: 16px;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+#mu-daily-sales .mu-daily-sales-area .mu-daily-sales-content .mu-daily-sales-left .mu-daily-sales-form input[type="text"],
+#mu-daily-sales .mu-daily-sales-area .mu-daily-sales-content .mu-daily-sales-left .mu-daily-sales-form input[type="email"] {
+  color: #000;
+  border-radius: 0;
+  height: 40px;
+}
+#mu-daily-sales .mu-daily-sales-area .mu-daily-sales-content .mu-daily-sales-left .mu-daily-sales-form input[type="text"]:focus,
+#mu-daily-sales .mu-daily-sales-area .mu-daily-sales-content .mu-daily-sales-left .mu-daily-sales-form input[type="email"]:focus {
+  box-shadow: none;
+}
+#mu-daily-sales .mu-daily-sales-area .mu-daily-sales-content .mu-daily-sales-left .mu-daily-sales-form textarea {
+  color: #000;
+  border-radius: 0;
+  padding: 10px;
+}
+#mu-daily-sales .mu-daily-sales-area .mu-daily-sales-content .mu-daily-sales-left .mu-daily-sales-form textarea:focus {
+  box-shadow: none;
+}
+#mu-daily-sales .mu-daily-sales-area .mu-daily-sales-content .mu-daily-sales-right {
+  display: inline;
+  float: left;
+  padding: 0 30px;
+  width: 100%;
+}
+#mu-daily-sales .mu-daily-sales-area .mu-daily-sales-content .mu-daily-sales-right .mu-daily-sales-widget {
+  display: inline;
+  float: left;
+  margin-bottom: 25px;
+  width: 100%;
+}
+#mu-daily-sales .mu-daily-sales-area .mu-daily-sales-content .mu-daily-sales-right .mu-daily-sales-widget h3 {
+  margin-top: 0px;
+}
+#mu-daily-sales .mu-daily-sales-area .mu-daily-sales-content .mu-daily-sales-right .mu-daily-sales-widget > p {
+  letter-spacing: 0.5px;
+  line-height: 26px;
+}
+#mu-daily-sales .mu-daily-sales-area .mu-daily-sales-content .mu-daily-sales-right .mu-daily-sales-widget address {
+  margin-top: 20px;
+}
+#mu-daily-sales .mu-daily-sales-area .mu-daily-sales-content .mu-daily-sales-right .mu-daily-sales-widget address p {
+  letter-spacing: 0.5px;
+}
+#mu-daily-sales .mu-daily-sales-area .mu-daily-sales-content .mu-daily-sales-right .mu-daily-sales-widget address p i {
+  margin-right: 10px;
+  width: 20px;
+  text-align: center;
+}
+#mu-daily-sales .mu-daily-sales-area .mu-daily-sales-content .mu-daily-sales-right .mu-daily-sales-widget address p span {
   display: inline-block;
   margin-right: 20px;
   min-width: 130px;
@@ -2272,7 +2384,7 @@ RESERVATION SECTION
   background-color: #444;
   display: inline;
   float: left;
-  padding: 50px 0;
+  padding: 5px 0;
   width: 100%;
 }
 #mu-footer .mu-footer-area {

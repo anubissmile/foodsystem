@@ -27,6 +27,8 @@ Route::get('get-order', function(){
 	]);
 });
 
+Route::get('export', 'HomeController@exportPDF');
+
 //////////////////////////////////////////////////////////////////////////////
 
 
@@ -100,6 +102,12 @@ Route::group(['prefix' => 'admin'], function(){
 		
 		//////////////////////////////////////////////////////////////////////////////
 	});
+
+	/**
+	 * ROUTE IN PREFIX admins
+	 */
+	Route::get('daily-sales/{type?}', 'HomeController@dailySales');
+		// PLACING ? MARK TO MAKE OPTIONAL PARAMETERS
 
 	//////////////////////////////////////////////////////////////////////////////
 

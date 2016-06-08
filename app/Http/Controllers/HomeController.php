@@ -11,6 +11,8 @@ use App\Http\Requests;
  */
 use Auth;
 use DB;
+use App;
+use Wesarut;
 
 class HomeController extends Controller
 {
@@ -70,6 +72,60 @@ class HomeController extends Controller
 
 	    	return json_encode($ds);
 
+    	}
+    }
+
+    public function exportPDF(){
+
+    	$html = '<style>
+					.page-break {
+					    page-break-after: always;
+					}
+					</style>
+					<h1>Page 1</h1>
+					<div class="page-break"></div>
+					<h1>Page 2</h1>';
+
+    	$pdf = App::make('dompdf.wrapper');
+    	$pdf->loadHTML($html)
+    		->setPaper('a4', 'landscape');
+    	return $pdf->stream();
+
+    }
+
+    public function dailySales($type = "today"){
+
+    	/**
+    	 * CHECK FOR TYPE OF METHOD.
+    	 */
+    	$cond = $dataset = null;
+
+    	switch ($type) {
+    		case 'today':
+    			/**
+    			 *	QUERY BY TODAY.
+    			 */
+    			$dataset = DB::table('tb_order_transaction')
+    				->where('create_date', date('Y-m-d'))->get();
+    			return view();
+    			break;
+    		case 'bydate':
+    			/**
+    			 *	QUERY BY DATE.
+    			 */
+				
+    			return 'bydate';
+    			break;
+    		case 'between':
+    			/**
+    			 *	QUERY BY DATE BETWEEN.
+    			 */
+				
+				return 'between';
+    			break;    		
+    		default:
+    			# code...
+    			break;
     	}
     }
 }
