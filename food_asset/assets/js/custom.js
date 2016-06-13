@@ -325,7 +325,7 @@ function setLabelPrice(price,amount,sum,summary){
     if(index != (leng - 1)){
       summary += "+ ";
     }else{
-      summary += "| " + amount + " ชาม" + " ราคา" + sum + " ฿";
+      summary += "| " + " ราคา" + sum + " ฿";
     }
   });
 
@@ -355,7 +355,7 @@ function orderTask(){
   var sumOther = sumCategoryPrice('.other');
   var sumExtra = sumCategoryPrice('.extra');
 
-  sum = price * amount; 
+  // sum = price * amount; 
   summary = setLabelPrice(price,amount,sum,summary);
 
   $("#cancel").click(function(event) {
@@ -466,43 +466,46 @@ function orderTask(){
          */
         $(this).toggleClass('mu-readmore-btn-active');
         active[category] = 0;
-        price -= thisPrice;
+        // price -= thisPrice;
 
-        if(method == "additional"){
-          ext -= thisPrice;
-          if(replacement < 1){
-            increment -= thisPrice;
-            price = increment;
-            sum = increment * amount;
-          }else{
-            replacement -= thisPrice;
-            price = replacement;
-            sum = replacement * amount;
-          }
-        }else if(method == "increment"){
-          if(replacement < 1){
-            increment -= thisPrice;
-            price = increment;
-            sum = increment * amount;
-          }else{
-            replacement -= thisPrice;
-            price = replacement;
-            sum = replacement * amount;
-          }
-        }else if(method == "replacement"){
-          if(replacement < 1){
-            price = sum = increment;
-          }else{
-            replacement -= thisPrice;
-            price = sum = replacement;
-          }
+        if(method == "increment" && increment >= thisPrice){
+          /**
+           *  METHOD INCREMENT.
+           */
+           increment -= thisPrice;     
+        }else if(method == "replacement" && replacement >= thisPrice){
+          /**
+           *   METHOD REPLACEMENT.
+           */
+           replacement -= thisPrice;
+        }else if(method == "additional" && ext >= thisPrice){
+          /**
+           *  METHOD ADDITIONAL.
+           */
+           ext -= thisPrice;
         }
 
-        if(ext > 0){
-          sum += ext;
-        }
-
-        // alert("inc :" + increment + "| rep :" + replacement);
+        /**
+         *  SUMMARY
+         */
+         /**
+          * CHECKING FOR REPLACEMENT METHOD.
+          */
+         if(replacement > 0){
+            price = replacement;
+         }else{
+            price = increment;
+         }
+         /**
+          * CHECKING FOR ADDITIONAL METHOD.
+          */
+         if(ext > 0){
+            price += ext;
+         }
+         /**
+          * SET SUM.
+          */
+         sum = price;
         
         summary = setLabelPrice(price,amount,sum,summary);
       }else{
@@ -511,41 +514,46 @@ function orderTask(){
          */
         $(this).toggleClass('mu-readmore-btn-active');
         active[category] = 1;
-        price += thisPrice;
+        // price += thisPrice;
 
-        if(method == "additional"){
-          ext += thisPrice;
-          if(replacement < 1){
-            increment += thisPrice;
-            price = increment;
-            sum = increment * amount;
-          }else{
-            replacement += thisPrice;
-            price = replacement;
-            sum = replacement * amount;
-          }
-        }else if(method == "increment"){
-          if(replacement < 1){
-            increment += thisPrice;
-            price = increment;
-            sum = increment * amount;
-          }else{
-            replacement += thisPrice;
-            price = replacement;
-            sum = replacement * amount;
-          }
+
+        if(method == "increment"){
+          /**
+           *  INCREMENT.
+           */
+           increment += thisPrice;
         }else if(method == "replacement"){
-          if(replacement < 1){
-            price = sum = increment;
-          }else{
-            replacement += thisPrice;
-            price = sum = replacement;
-          }
+          /**
+           *  REPLACEMENT.
+           */
+           replacement += thisPrice;
+        }else if(method == "additional"){
+          /**
+           *  ADDITIONAL.
+           */
+           ext += thisPrice;
         }
 
-        if(ext > 0){
-          sum += ext;
-        }
+        /**
+         *  CHECKING FOR REPLACEMENT.
+         */
+         if(replacement > 0){
+            price = replacement;
+         }else{
+            price = increment;
+         }
+
+         /**
+          * CHECKING FOR ADDITIONAL.
+          */
+          if(ext > 0){
+            price += ext;
+          }
+
+         /**
+          * SET SUM.
+          */
+          sum = price;
         
         summary = setLabelPrice(price,amount,sum,summary);
       }
