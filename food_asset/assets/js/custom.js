@@ -325,7 +325,7 @@ function setLabelPrice(price,amount,sum,summary){
     if(index != (leng - 1)){
       summary += "+ ";
     }else{
-      summary += "| " + amount + " ชาม" + " ราคา" + sum + " ฿";
+      summary += "| " + " ราคา" + sum + " ฿";
     }
   });
 
@@ -355,11 +355,11 @@ function orderTask(){
   var sumOther = sumCategoryPrice('.other');
   var sumExtra = sumCategoryPrice('.extra');
 
-  sum = price * amount; 
+  // sum = price * amount; 
   summary = setLabelPrice(price,amount,sum,summary);
 
   $("#cancel").click(function(event) {
-    pNoodle = pSoup = pTopping = pOther = pExtra = sum = price = 0;
+    pNoodle = pSoup = pTopping = pOther = pExtra = oldPrice = sum = price = 0;
     summary = "";
     active = {".noodle":0, ".soup":0, ".topping":0, ".other":0, ".extra":0};
     amount = 1;
@@ -375,12 +375,12 @@ function orderTask(){
   });
 
   $("#order").click(function(event) {
-    var s,str="";
+    var desc = s = str="";
     $(".mu-make-order-content .row[data-mustselect='true']").each(function(index, el) {
       s = $(this).attr("id");
 
       if(active[s] == 0){
-        str += "  " + $(this).children('h3').html() + "\n";
+        str += "  " + $(this).attr("data-describe") + "\n";
       }
     });
     if(str != ""){
@@ -462,60 +462,98 @@ function orderTask(){
       var status = $(this).is('.mu-readmore-btn-active');
       if(status){
         /**
-         *  MINUS
+         *  MINUS.
          */
         $(this).toggleClass('mu-readmore-btn-active');
         active[category] = 0;
-        price -= thisPrice;
+        // price -= thisPrice;
 
-        if(method == "additional"){
-          ext -= thisPrice;
-          sum = price * amount;
-        }else if(method == "increment"){
-          increment -= thisPrice;
-          if(replacement < 1){
-            sum = price * amount;
-          }
-        }else if(method == "replacement"){
-          replacement -= thisPrice;
-          if(replacement < 1){
-            price = sum = increment;
-          }else{
-            price = sum = replacement;
-          }
+        if(method == "increment" && increment >= thisPrice){
+          /**
+           *  METHOD INCREMENT.
+           */
+           increment -= thisPrice;     
+        }else if(method == "replacement" && replacement >= thisPrice){
+          /**
+           *   METHOD REPLACEMENT.
+           */
+           replacement -= thisPrice;
+        }else if(method == "additional" && ext >= thisPrice){
+          /**
+           *  METHOD ADDITIONAL.
+           */
+           ext -= thisPrice;
         }
 
-        if(ext > 0){
-          sum += ext;
-        }
-
-        // alert("inc :" + increment + "| rep :" + replacement);
+        /**
+         *  SUMMARY
+         */
+         /**
+          * CHECKING FOR REPLACEMENT METHOD.
+          */
+         if(replacement > 0){
+            price = replacement;
+         }else{
+            price = increment;
+         }
+         /**
+          * CHECKING FOR ADDITIONAL METHOD.
+          */
+         if(ext > 0){
+            price += ext;
+         }
+         /**
+          * SET SUM.
+          */
+         sum = price;
         
         summary = setLabelPrice(price,amount,sum,summary);
       }else{
         /**
-         *  PLUS
+         *  PLUS.
          */
         $(this).toggleClass('mu-readmore-btn-active');
         active[category] = 1;
-        price += thisPrice;
+        // price += thisPrice;
 
-        if(method == "additional"){
-          ext += thisPrice;
-          sum = price * amount;
-        }else if(method == "increment"){
-          increment += thisPrice;
-          if(replacement < 1){
-            sum = price * amount;
-          }
+
+        if(method == "increment"){
+          /**
+           *  INCREMENT.
+           */
+           increment += thisPrice;
         }else if(method == "replacement"){
-          replacement += thisPrice;
-          price = sum = replacement;
+          /**
+           *  REPLACEMENT.
+           */
+           replacement += thisPrice;
+        }else if(method == "additional"){
+          /**
+           *  ADDITIONAL.
+           */
+           ext += thisPrice;
         }
 
-        if(ext > 0){
-          sum += ext;
-        }
+        /**
+         *  CHECKING FOR REPLACEMENT.
+         */
+         if(replacement > 0){
+            price = replacement;
+         }else{
+            price = increment;
+         }
+
+         /**
+          * CHECKING FOR ADDITIONAL.
+          */
+          if(ext > 0){
+            price += ext;
+          }
+
+         /**
+          * SET SUM.
+          */
+          sum = price;
         
         summary = setLabelPrice(price,amount,sum,summary);
       }
@@ -531,52 +569,69 @@ function orderTask(){
         $(category).removeClass('mu-readmore-btn-active');
         switch (category) {
           case ".noodle":
+            oldPrice = pNoodle;
             pNoodle = 0;
-            price -= thisPrice;
             break;
           case ".soup":
+            oldPrice = pSoup;
             pSoup = 0;
-            price -= thisPrice;
             break;
           case ".topping":
+            oldPrice = pTopping;
             pTopping = 0;
-            price -= thisPrice;
             break;
           case ".other":
+            oldPrice = pOther;
             pOther = 0;
-            price -= thisPrice;
             break;
           case ".extra":
+            oldPrice = pExtra;
             pExtra = 0;
-            price -= thisPrice;
             break;
           default:
-            // statements_def
+            // DO NOTHING.
             break;
         }
         active[category] = 0;
 
-        if(method == "additional"){
-          ext -= thisPrice;
-          sum = price * amount;
-        }else if(method == "increment"){
-          increment -= thisPrice;
-          if(replacement < 1){
-            sum = price * amount;
-          }
-        }else if(method == "replacement"){
-          replacement -= thisPrice;
-          if(replacement < 1){
-            price = sum = increment;
-          }else{
-            price = sum = replacement;
-          }
+        if(method == "increment" && increment > 0){
+          /**
+           *  METHOD INCREMENT.
+           */
+           increment -= oldPrice;
+        }else if(method == "replacement" && replacement > 0){
+          /**
+           *  METHOD INCREMENT.
+           */
+           replacement -= oldPrice;
+        }else if(method == "additional" && ext > 0){
+          /**
+           *  METHOD INCREMENT.
+           */
+           ext -= oldPrice;
         }
 
-        if(ext > 0){
-          sum += ext;
-        }
-        
+        /**
+         *  CHECKING FOR REPLACEMENT.
+         */
+         if(replacement > 0){
+            price = replacement;
+         }else{
+            price = increment;
+         }
+
+         /**
+         *  CHECKING FOR ADDITIONAL.
+         */
+         if(ext > 0){
+            price += ext;
+         }
+
+         /**
+         *  SET SUM.
+         */
+         sum = price;
+
         summary = setLabelPrice(price,amount,sum,summary);
       }else{
         /**
@@ -586,52 +641,72 @@ function orderTask(){
         $(this).toggleClass('mu-readmore-btn-active');
         switch (category) {
           case ".noodle":
-            price -= pNoodle;
-            price += thisPrice;
+            oldPrice = pNoodle;
             pNoodle = thisPrice;
             break;
           case ".soup":
-            price -= pSoup;
-            price += thisPrice;
+            oldPrice = pSoup;
             pSoup = thisPrice;
             break;
           case ".topping":
-            price -= pTopping;
-            price += thisPrice;
+            oldPrice = pTopping;
             pTopping = thisPrice;
             break;
           case ".other":
-            price -= pOther;
-            price += thisPrice;
+            oldPrice = pOther;
             pOther = thisPrice;
             break;
           case ".extra":
-            price -= pExtra;
-            price += thisPrice;
+            oldPrice = pExtra;
             pExtra = thisPrice;
             break;
           default:
-            // statements_def
+            // DO NOTHING.
             break;
         }     
         active[category] = 1; 
 
-        if(method == "additional"){
-          ext += thisPrice;
-          sum = price * amount;
-        }else if(method == "increment"){
-          increment += thisPrice;
-          if(replacement < 1){
-            sum = price * amount;
-          }
+        if(method == "increment"){
+          /**
+           *  METHOD INCREMENT.
+           */
+           increment -= oldPrice;
+           increment += thisPrice;
         }else if(method == "replacement"){
-          replacement += thisPrice;
-          price = sum = replacement;
+          /**
+           *  METHOD REPLACEMENT.
+           */
+           replacement -= oldPrice;
+           replacement += thisPrice;
+        }else if(method == "additional"){
+          /**
+           *  METHOD ADDITIONAL.
+           */
+           ext -= oldPrice;
+           ext += thisPrice;
         }
 
-        if(ext > 0){
-          sum += ext;
-        }
+        /**
+         *  METHOD REPLACEMENT.
+         */
+         if(replacement > 0){
+            price = replacement;
+         }else{
+            price = increment;
+         }
+
+         /**
+         *  METHOD ADDITIONAL.
+         */
+         if(ext > 0){
+            price += ext;
+         }
+
+         /**
+         *  SET SUM.
+         */
+         sum = price;
+
         
         summary = setLabelPrice(price,amount,sum,summary);
       }
