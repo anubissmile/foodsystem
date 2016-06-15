@@ -58,7 +58,7 @@ Route::get('or.der', function(){
 });
 
 Route::get('man.men', function(){
-	return "manage menu";
+	return "manage menu กดกดก";
 });
 
 //////////////////////////////////////////////////////////////////////////////
@@ -98,16 +98,19 @@ Route::group(['prefix' => 'admin'], function(){
 			Route::get('dashboard', function(){
 				return "dashboard";
 			});
+	
 		});
 		
 		//////////////////////////////////////////////////////////////////////////////
 	});
 
 	/**
-	 * ROUTE IN PREFIX admins
+	 * ROUTE IN PREFIX & MIDDLEWARE => 'auth'
 	 */
-	Route::get('daily-sales/{type?}', 'HomeController@dailySales');
+	Route::group(['middleware' => 'auth'], function(){
+		Route::any('daily-sales/{type?}', 'HomeController@dailySales');
 		// PLACING ? MARK TO MAKE OPTIONAL PARAMETERS
+	});
 
 	//////////////////////////////////////////////////////////////////////////////
 

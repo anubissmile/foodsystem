@@ -162,6 +162,17 @@ return [
          */
         Barryvdh\DomPDF\ServiceProvider::class,
 
+        /**
+         * Vsmoraes PDF
+         */
+        // Vsmoraes\Pdf\PdfServiceProvider::class,
+
+        
+        /**
+         * Codedge/laravel-fpdf
+         */
+        // Codedge\Fpdf\FpdfServiceProvider::class,
+
 
     ],
 
@@ -208,8 +219,26 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        /**
+         * DomPDF
+         */
         'PDF' => Barryvdh\DomPDF\Facade::class,
+
+        /**
+         * Vsmoraes PDF
+         */
+        // 'PDF' => Vsmoraes\Pdf\PdfFacade::class,
+
+        /**
+         * Codedge/laravel-fpdf
+         */
+        // 'Fpdf' => Codedge\Fpdf\Facades\Fpdf::class,
+
+        /**
+         * MY CLASS WesarutLib
+         */
         'Wesarut' => App\Library\WesarutLib::class,
+
 
     ],
 

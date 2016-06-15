@@ -22,9 +22,12 @@
 
               <div class="row" id="row-daily-sales">
                 <h3>สรุปยอดขายรายวัน</h3>
-                <button class="mu-send-btn"><a href="admin/daily-sales" target="_blank">ดูยอดขายของวันนี้</a></button>
+                <a href="admin/daily-sales" target="_blank">
+                  <button class="mu-send-btn">ดูยอดขายของวันนี้</button>
+                </a>
                 <hr>
-                <form action="{{url('daily-sales/bydate')}}" id="commentform">
+                <form target="_blank" action="{{url('admin/daily-sales/bydate')}}" id="commentform" method="post">
+                  <input type="hidden" name="_token" value="{{csrf_token()}}">
                   <p class="comment-form-author">
                     <label for="date_report">โปรดเลือกวันที่<span class="required">*</span></label><br>
                     <input type="date" name="date_report" class="louse-input" value="" min="{{date('Y') . '-01-01'}}" required="required">
@@ -32,7 +35,8 @@
                   </p>   
                 </form>
                 <hr>
-                <form action="{{url('daily-sales/between')}}" id="commentform">
+                <form target="_blank" action="{{url('admin/daily-sales/between')}}" id="commentform" method="post">
+                  <input type="hidden" name="_token" value="{{csrf_token()}}">
                   <p class="comment-form-author">
                     <label for="date_report">โปรดเลือกช่วงวันที่<span class="required">*</span></label><br>
                     <input type="date" name="start_date" class="louse-input" value="" min="{{date('Y') . '-01-01'}}" required="required">

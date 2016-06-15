@@ -10,6 +10,7 @@
 /* Table of Content
 ==================================================
 #BASIC TYPOGRAPHY
+#FONT FACE BOONJOT
 #HEADER SECTION
 #NAVBAR SECTION
 #SLIDER SECTION
@@ -66,9 +67,10 @@ body {
   width:90%;
   margin:auto;
   text-align:left;
+  border-width:2px;
 }
 
-.head-all-orders>tr, .body-all-orders>tr{
+.head-all-orders>tr, .body-all-orders>tr {
   border-bottom:2px solid #53B4B1;
 }
 
@@ -332,6 +334,13 @@ img {
   left: 0px;
   right: 0px;
   top: 0px;
+}
+
+/*==================
+ FONT FACE BOONJOT
+====================*/
+*.fontbj{
+  font-family: "boonjot", sans-serif;
 }
 
 /* LAYOUTS - Page layout styles */

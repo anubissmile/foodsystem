@@ -13,9 +13,10 @@ use Auth;
 use DB;
 use App;
 use Wesarut;
+use PDF;
 
-class HomeController extends Controller
-{
+class HomeController extends Controller{
+
     public function getIndex(){
     	$allOrder = null;
     	if(Auth::check()){
@@ -86,46 +87,80 @@ class HomeController extends Controller
 					<div class="page-break"></div>
 					<h1>Page 2</h1>';
 
-    	$pdf = App::make('dompdf.wrapper');
-    	$pdf->loadHTML($html)
-    		->setPaper('a4', 'landscape');
-    	return $pdf->stream();
+    	// $pdf = App::make('dompdf.wrapper');
+    	// $pdf->loadHTML($html)
+    	// 	->setPaper('a4', 'landscape');
+    	// return $pdf->stream();
 
     }
 
-    public function dailySales($type = "today"){
+    public function dailySales(Request $request, $type = "today"){
 
+        $cond = $dataset = null;
     	/**
     	 * CHECK FOR TYPE OF METHOD.
     	 */
-    	$cond = $dataset = null;
-
     	switch ($type) {
     		case 'today':
     			/**
     			 *	QUERY BY TODAY.
     			 */
+                $today = date('Y-m-d');
     			$dataset = DB::table('tb_order_transaction')
-    				->where('create_date', date('Y-m-d'))->get();
-    			return view();
+                    ->where('create_date', $today)
+                    ->orderBy('created_at', 'desc')->get();
+                $sumtotal = DB::table('tb_order_transaction')
+                    ->where('create_date', $today)
+                    ->sum('total');
+
+                $title = "สรุปยอดขายประจำวันที่ " . $today;
+
+
     			break;
     		case 'bydate':
     			/**
     			 *	QUERY BY DATE.
     			 */
-				
-    			return 'bydate';
+				$dataset = DB::table('tb_order_transaction')
+                    ->where('create_date', $request->date_report)
+                    ->orderBy('created_at', 'desc')->get();
+
+                $sumtotal = DB::table('tb_order_transaction')
+                    ->where('create_date', $request->date_report)
+                    ->sum('total');
+
+                $title = "สรุปยอดขายประจำวันที่ " . $request->date_report;
+
     			break;
     		case 'between':
     			/**
     			 *	QUERY BY DATE BETWEEN.
     			 */
+                $dataset = DB::table('tb_order_transaction')
+                    ->whereBetween('create_date', [$request->start_date, 
+                        $request->end_date])
+                    ->orderBy('created_at', 'desc')->get();
+
+                $sumtotal = DB::table('tb_order_transaction')
+                    ->whereBetween('create_date', [$request->start_date, 
+                        $request->end_date])
+                    ->sum('total');
+
+                $title = "สรุปยอดขายระหว่างวันที่ " . $request->start_date . "-" . $request->end_date;
 				
-				return 'between';
     			break;    		
     		default:
     			# code...
+                return 'nothing';
     			break;
     	}
+
+
+        $pdf = PDF::loadView('spicy.components.dailysales_report', [
+            'dataset' => $dataset,
+            'sumtotal' => $sumtotal, 
+            'title' => $title
+        ]);
+        return $pdf->stream();
     }
 }
