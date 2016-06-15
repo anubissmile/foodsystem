@@ -76,30 +76,13 @@ class HomeController extends Controller{
     	}
     }
 
-    public function exportPDF(){
-
-    	$html = '<style>
-					.page-break {
-					    page-break-after: always;
-					}
-					</style>
-					<h1>Page 1</h1>
-					<div class="page-break"></div>
-					<h1>Page 2</h1>';
-
-    	// $pdf = App::make('dompdf.wrapper');
-    	// $pdf->loadHTML($html)
-    	// 	->setPaper('a4', 'landscape');
-    	// return $pdf->stream();
-
-    }
-
     public function dailySales(Request $request, $type = "today"){
 
         $cond = $dataset = null;
     	/**
     	 * CHECK FOR TYPE OF METHOD.
     	 */
+        $status = true;
     	switch ($type) {
     		case 'today':
     			/**
@@ -151,16 +134,22 @@ class HomeController extends Controller{
     			break;    		
     		default:
     			# code...
-                return 'nothing';
+                $status = false;
     			break;
     	}
 
-
-        $pdf = PDF::loadView('spicy.components.dailysales_report', [
-            'dataset' => $dataset,
-            'sumtotal' => $sumtotal, 
-            'title' => $title
-        ]);
-        return $pdf->stream();
+        /**
+         * CHECKING FOR STATUS.
+         */
+        if($status){
+            $pdf = PDF::loadView('spicy.components.dailysales_report', [
+                'dataset' => $dataset,
+                'sumtotal' => $sumtotal, 
+                'title' => $title
+            ]);
+            return $pdf->stream();
+        }else{
+            return "การดำเนินการมีบางอย่างผิดพลาด โปรดลองใหม่อีกครั้ง!";
+        }
     }
 }
