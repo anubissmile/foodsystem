@@ -107,8 +107,11 @@ Route::group(['prefix' => 'admin'], function(){
 	 * ROUTE IN PREFIX & MIDDLEWARE => 'auth'
 	 */
 	Route::group(['middleware' => 'auth'], function(){
+
 		Route::any('daily-sales/{type?}', 'HomeController@dailySales');
 		// PLACING ? MARK TO MAKE OPTIONAL PARAMETERS
+
+		// Route::get('new-item')
 	});
 
 	//////////////////////////////////////////////////////////////////////////////

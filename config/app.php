@@ -162,17 +162,6 @@ return [
          */
         Barryvdh\DomPDF\ServiceProvider::class,
 
-        /**
-         * Vsmoraes PDF
-         */
-        // Vsmoraes\Pdf\PdfServiceProvider::class,
-
-        
-        /**
-         * Codedge/laravel-fpdf
-         */
-        // Codedge\Fpdf\FpdfServiceProvider::class,
-
 
     ],
 
@@ -223,17 +212,7 @@ return [
          * DomPDF
          */
         'PDF' => Barryvdh\DomPDF\Facade::class,
-
-        /**
-         * Vsmoraes PDF
-         */
-        // 'PDF' => Vsmoraes\Pdf\PdfFacade::class,
-
-        /**
-         * Codedge/laravel-fpdf
-         */
-        // 'Fpdf' => Codedge\Fpdf\Facades\Fpdf::class,
-
+        
         /**
          * MY CLASS WesarutLib
          */

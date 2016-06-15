@@ -52,6 +52,10 @@
     @include('spicy.components.daily_sales')
     <!-- End Daily Sales -->
 
+    <!-- Start Daily Sales -->
+    @include('spicy.components.manage_item')
+    <!-- End Daily Sales -->
+
   @endif
   
 

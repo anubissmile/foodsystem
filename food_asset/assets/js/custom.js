@@ -321,11 +321,11 @@ function setLabelPrice(price,amount,sum,summary){
   summary = "";
   var leng = $(".mu-make-order-content .row .mu-readmore-btn-active").length;
   $(".mu-make-order-content .row .mu-readmore-btn-active").each(function(index, el) {
-    summary += $(this).html() + " ";
+    summary += $(this).html();// + " ";
     if(index != (leng - 1)){
-      summary += "+ ";
+      summary += ",";
     }else{
-      summary += "| " + " ราคา" + sum + " ฿";
+      // summary += "| " + " ราคา" + sum + " ฿";
     }
   });
 
