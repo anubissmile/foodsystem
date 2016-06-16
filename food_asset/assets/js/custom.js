@@ -359,7 +359,7 @@ function orderTask(){
   summary = setLabelPrice(price,amount,sum,summary);
 
   $("#cancel").click(function(event) {
-    pNoodle = pSoup = pTopping = pOther = pExtra = oldPrice = sum = price = 0;
+    pNoodle = pSoup = pTopping = pOther = pExtra = oldPrice = sum = price = ext = increment = replacement = 0;
     summary = "";
     active = {".noodle":0, ".soup":0, ".topping":0, ".other":0, ".extra":0};
     amount = 1;
@@ -415,6 +415,8 @@ function orderTask(){
                   scrollTop: $("#mu-make-order").offset().top
             }, 2000);
           }
+          
+          $('#cancel').click();
         },
         error : function(xhr,status,data){
           /*alert("On Success " + xhr.sss);
@@ -422,10 +424,10 @@ function orderTask(){
           alert("On Success " + status);*/
           // alert(status);
           location.reload();
+          $('#cancel').click();
         }
       });
     }
-
   });
   
   $('#plus').click(function(event) {
