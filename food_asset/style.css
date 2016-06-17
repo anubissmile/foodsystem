@@ -42,10 +42,12 @@ body {
   overflow-x: hidden;
 }
 
+.wrap-form-ingredient{
+  text-align:center;
+}
 
 .louse-input{
   font-size: 25px;
-  width: 40%;
   border: 1px solid #8a6d3b;
   position:relative;
   margin:5px 5px 5px 5px;
@@ -54,11 +56,11 @@ body {
 .louse-input:focus{
   border: 2px solid #8a6d3b;
   outline:none;
+  transition: all 0.5s;
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
   -ms-transition: all 0.5s;
   -o-transition: all 0.5s;
-  transition: all 0.5s;
 }
 
 .normal-table{
@@ -151,7 +153,7 @@ body {
   font-size: 21px;
   padding: 0.5% 5px 5px 5px;
   margin: 4px 1px 1px 5px;
-  width: 442px;
+  width: 594px;
   height: 115px;
 }
 
@@ -281,7 +283,7 @@ img {
 }
 
 .mu-send-btn {
-  background-color: transparent;
+  background-color: #E9D8AE;
   font-family: "Kanit", "Open Sans", sans-serif;
   border: 1px solid #ccc;
   display: inline-block;
@@ -739,7 +741,7 @@ img {
   display: inline;
   float: left;
   width: 100%;
-  padding: 100px 0;
+  padding: 30px 0;
 }
 #mu-restaurant-menu .mu-restaurant-menu-area {
   display: inline;

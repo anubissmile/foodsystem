@@ -256,10 +256,50 @@ jQuery(function($){
       orderTask();
       makeLink();
       allOrderListener();
+      cancelIngredient();
    });
 
   
 });
+
+function cancelIngredient(){
+  $('.cancel-ingredient').click(function(event) {
+    var round = $(this).attr('data-code');
+    var type = $(this).attr('data-type');
+
+    switch(type){
+      case 'noodle':
+        $("#"+type+round).val("").attr("placeholder","เพิ่มส่วนประกอบอาหาร");
+        $("#nprice"+round).val(0);
+        $("#rnreplacement"+round).prop("checked", false);
+        $("#rnadditional"+round).prop("checked", false);
+        $("#rnincrement"+round).prop("checked", true);
+        break;
+      case 'soup':
+        $("#"+type+round).val("").attr("placeholder","เพิ่มส่วนประกอบอาหาร");
+        $("#sprice"+round).val(0);
+        $("#rsincrement"+round).prop("checked", true);
+        $("#rsreplacement"+round).prop("checked", false);
+        $("#rsadditional"+round).prop("checked", false);
+        break;
+      case 'topping':
+        $("#"+type+round).val("").attr("placeholder","เพิ่มส่วนประกอบอาหาร");
+        $("#tprice"+round).val(0);
+        $("#rtincrement"+round).prop("checked", true);
+        $("#rtreplacement"+round).prop("checked", false);
+        $("#rtadditional"+round).prop("checked", false);
+        break;
+      case 'other':
+        $("#"+type+round).val("").attr("placeholder","เพิ่มส่วนประกอบอาหาร");
+        $("#oprice"+round).val(0);
+        $("#roincrement"+round).prop("checked", true);
+        $("#roreplacement"+round).prop("checked", false);
+        $("#roadditional"+round).prop("checked", false);
+        break;
+    }    
+    return false;
+  });
+}
 
 function allOrderListener(){
 

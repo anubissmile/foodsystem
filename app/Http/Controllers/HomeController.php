@@ -14,6 +14,7 @@ use DB;
 use App;
 use Wesarut;
 use PDF;
+use App\Ingredient;
 
 class HomeController extends Controller{
 
@@ -36,9 +37,37 @@ class HomeController extends Controller{
 	    	////////////////////////////////////////////////////////////////////////////////
 
     	}
+
+        /**
+         * FETCH INGREDIENTS.
+         */
+        // NOODLE
+        $noodle = Ingredient::where('type', 'noodle')
+            ->orderBy('id', 'asc')
+            ->take(7)->get();
+        // SOUP
+        $soup = Ingredient::where('type', 'soup')
+            ->orderBy('id', 'asc')
+            ->take(7)->get();
+        // TOPPING
+        $topping = Ingredient::where('type', 'topping')
+            ->orderBy('id', 'asc')
+            ->take(7)->get();
+        // OTHER
+        $other = Ingredient::where('type', 'other')
+            ->orderBy('id', 'asc')
+            ->take(7)->get();
+
+        /**
+         * RETURNING TO THE VIEW.
+         */
     	return view('spicy.welcome', [
-		'title' => "Welcome to Noodlepark.",
-		'orders' => $allOrder
+    		'title' => "Welcome to Noodlepark.",
+    		'orders' => $allOrder,
+            'noodle' => $noodle,
+            'soup' => $soup,
+            'topping' => $topping,
+            'other' => $other
 		]);
 
     }
