@@ -32,7 +32,7 @@
                   @endfor
                 @endif
               </div>
-              <div class="row" id=".topping" data-describe="เลือกท็อปปิง (เลือกได้หลายรายการ)" data-mustselect="true" data-type="choice">
+              <div class="row" id=".topping" data-describe="เลือกท็อปปิง (เลือกได้หลายรายการ)" data-mustselect="false" data-type="choice">
                 <!-- <h3>เลือกท็อปปิง (เลือกได้หลายรายการ)</h3> -->
                 @foreach($topping as $t)
                   <div class="topping mu-readmore-btn" data-method="{{ $t->traits }}" data-price="{{ $t->price }}">{{ $t->description }}</div>

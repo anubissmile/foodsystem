@@ -181,4 +181,94 @@ class HomeController extends Controller{
             return "การดำเนินการมีบางอย่างผิดพลาด โปรดลองใหม่อีกครั้ง!";
         }
     }
+
+    public function manageIngredient(Request $request){
+
+        /**
+         * SETTING DATA SET & VARIABLE.
+         */
+        $ds = [
+            'errStatus' => true,
+            'errDescription' => ''
+        ];
+
+        $prefixradio = $prefix = '';
+        $type = $request->type;
+
+        /**
+         * CHECKING TYPE OF INGREDIENT.
+         */
+        switch ($type) {
+            case 'noodle':
+                $prefixradio = 'rn';
+                $prefix = 'n';
+                break;
+            case 'soup':
+                $prefixradio = 'rs';
+                $prefix = 's';
+                break;
+            case 'topping':
+                $prefixradio = 'rt';
+                $prefix = 't';
+                break;
+            case 'other':
+                $prefixradio = 'ro';
+                $prefix = 'o';
+                break;
+            default:
+                $ds['errStatus'] = false;
+                $ds['errDescription'] = "ประเภทส่วนประกอบอาหารไม่ถูกต้อง";
+                break;
+        }
+
+        /**
+         * LOOPING FOR EACH ID.
+         */
+        for($i=1;$i<=7;$i++){
+            $id = $request->input("rec_id$i");
+            $description = $request->input($type.$i);
+            $price = $request->input($prefix."price$i");
+            $traits = $request->input($prefixradio.$i);
+
+            /**
+             * EXECUTE (INSERT, UPDATE, DELETE)
+             */
+            if($description != "" && $id == 'none'){
+                /**
+                 * INSERT.
+                 */
+                $result = Ingredient::insert([
+                    'description' => $description,
+                    'price' => $price,
+                    'traits' => $traits,
+                    'type' => $type,
+                    'create_date' => date('Y-m-d'),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ]);
+            }else if($description != "" && $id != "none"){
+                /**
+                 * UPDATE.
+                 */
+                $ing = Ingredient::find($id);
+                $ing->description = $description;
+                $ing->price = $price;
+                $ing->traits = $traits;
+                $result = $ing->save();
+            }else if($description == "" && $id != "none"){
+                /**
+                 * DELETE.
+                 */
+                $result = Ingredient::where('id', $id)->delete();
+            }
+
+        }
+        if(!$result){
+            echo "การดำเนินการผิดพลาดโปรดลองใหม่อีกครั้ง";
+            sleep(2);
+        }
+        return redirect('/');
+
+    }
+
 }

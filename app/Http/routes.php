@@ -110,8 +110,8 @@ Route::group(['prefix' => 'admin'], function(){
 
 		Route::any('daily-sales/{type?}', 'HomeController@dailySales');
 		// PLACING ? MARK TO MAKE OPTIONAL PARAMETERS
-
-		// Route::get('new-item')
+		
+		Route::post('ingredient', 'HomeController@manageIngredient');
 	});
 
 	//////////////////////////////////////////////////////////////////////////////
