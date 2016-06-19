@@ -19,7 +19,7 @@ class CreateOrderTransactions extends Migration
             $table->string('amount');
             $table->string('price');
             $table->string('total');
-            $table->enum('status', ['wait', 'complete', 'abort', 'fail']);
+            $table->enum('status', ['order', 'wait', 'complete', 'abort', 'fail'])->default('order');
                 //'wait' = waiting for process, 'complete' = menucomplete, 'abort', menu abort, 'fail', other fail
             $table->date('create_date');
             $table->timestamps();
