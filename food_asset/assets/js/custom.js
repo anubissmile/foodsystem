@@ -448,10 +448,9 @@ function setLabelPrice(price,amount,sum,summary){
       // summary += "| " + " ราคา" + sum + " ฿";
     }
   });
+  
 
-  if(summary != ""){
-    $("#lb-result").html(summary);
-  }
+  $("#lb-result").html(summary);
   return summary;
 }
 
