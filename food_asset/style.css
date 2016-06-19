@@ -43,6 +43,11 @@ body {
   overflow-x: hidden;
 }
 
+.set-popup-msg{
+  text-align:center;
+  font-size:2em;
+}
+
 .wrap-form-ingredient{
   text-align:center;
 }

@@ -500,11 +500,14 @@ function orderTask(){
       s = $(this).attr("id");
 
       if(active[s] == 0){
-        str += "  " + $(this).attr("data-describe") + "\n";
+        str += "  " + $(this).attr("data-describe") + "<br/>";
       }
     });
     if(str != ""){
-      alert("คุณจำเป็นต้องเลือกรายการเหล่านี้\n" + str);
+      // alert("คุณจำเป็นต้องเลือกรายการเหล่านี้\n" + str);
+      var msg = '<div class="set-popup-msg">' + "คุณจำเป็นต้องเลือกรายการเหล่านี้<br/>" + str + '</div>';
+      showNote(msg, true);
+      setTimeout(function(){popup_close();}, 2000);
     }else{
 
       /**
@@ -530,7 +533,8 @@ function orderTask(){
           alert("On Success " + status);*/
           if(status = 'success'){
             // alert(xhr.describe);
-            showNote(xhr.describe, true);
+            var msg = '<div class="set-popup-msg">' + xhr.describe + '</div>';
+            showNote(msg, true);
             setTimeout(function(){popup_close();}, 1800);
             $("#cancel").click();
             $('html, body').animate({
