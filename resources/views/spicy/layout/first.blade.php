@@ -20,6 +20,10 @@
 
   </head>
   <body>  
+
+  <!-- Popup -->
+  @yield('popup')
+  <!-- Popup -->
   
   <!-- Pre Loader -->
   @include('spicy.components.preloader')

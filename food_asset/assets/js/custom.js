@@ -21,6 +21,7 @@
   11. HOVER DROPDOWN MENU
   12. SCROLL TOP BUTTON
   13. PRELOADER  
+  14. POPUP
 
   
 **/
@@ -262,6 +263,85 @@ jQuery(function($){
   
 });
 
+  /* ----------------------------------------------------------- */
+  /*  14. POPUP
+  /* ----------------------------------------------------------- */
+
+
+  function nowLoading(Obj,success){
+    Obj.load("resources/views/spicy/components/loading.blade.php",function(){
+      success();
+    });
+  }
+
+  function showContent(path,isLock){  
+    popup_close();
+    nowLoading($(".content-popup"),function(){
+      $(".content-popup").load(path); 
+    });
+    $(".bgpopup").fadeIn(1200,function(){
+      $(this).css("display","block"); 
+      if(isLock != true){
+        img_del_listener(isLock);
+      }
+    });
+    //popup_listener(isLock); //comment ไว้ก่อนเพราะว่า เวลาเปลี่ยนหน้า showContent แล้วมันหายไปเอง
+    if(isLock != true){
+      $(document).bind('keydown',function(e){
+        if(e.which == 27){
+          popup_close($('.bgpopup'));
+        }
+      });
+    }
+    return false;
+  }
+  
+  function img_del_listener(isLock){
+    $('.content-popup').prepend('<img id="img_del" title="[Esc] to Close." src="food_asset/assets/img/components/delete.png" />');
+    $('#img_del').addClass('img_del')
+      .bind('click',function(){
+      popup_close();            
+    });
+    return false;
+  }
+  
+  function showNote(msg,isLocks){
+    popup_close();
+    nowLoading($(".content-popup"),function(){
+      $(".content-popup").html(msg);
+    });
+    $(".bgpopup").fadeIn(1200,function(){
+      $(this).css("display","block");
+      if(isLocks != true){
+        img_del_listener(isLocks);
+      }
+    });
+    
+    //popup_listener(isLock);
+    if(isLocks != true){
+      $(document).bind('keydown',function(e){
+        if(e.which == 27){
+          popup_close($('.bgpopup'));
+        }
+      });
+    }
+    return false;
+  }
+  
+  function popup_close(obj){
+    $('.content-popup').undelegate('click');
+    $('.bgpopup').fadeOut(100,function(){
+      $(this).css("display","none");  
+      $('#img_del').unbind('click');
+      return false;
+    });
+    $(document).unbind('keydown');
+    return false;
+  }
+
+/////////////////////////////////////////////////////////////////
+
+
 function cancelIngredient(){
   $('.cancel-ingredient').click(function(event) {
     var round = $(this).attr('data-code');
@@ -449,14 +529,16 @@ function orderTask(){
           alert("On Success " + data.responseText);
           alert("On Success " + status);*/
           if(status = 'success'){
-            alert(xhr.describe);
+            // alert(xhr.describe);
+            showNote(xhr.describe, true);
+            setTimeout(function(){popup_close();}, 1800);
             $("#cancel").click();
             $('html, body').animate({
                   scrollTop: $("#mu-make-order").offset().top
             }, 2000);
           }
           
-          $('#cancel').click();
+          // $('#cancel').click();
         },
         error : function(xhr,status,data){
           /*alert("On Success " + xhr.sss);
