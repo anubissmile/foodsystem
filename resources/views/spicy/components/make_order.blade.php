@@ -12,39 +12,47 @@
             <div class="mu-make-order-content">
               <div class="row" id=".noodle" data-describe="เลือกเส้น" data-mustselect="true" data-type="select">
                 <!-- <h3>เลือกเส้น</h3> -->
-                <div class="noodle mu-readmore-btn" data-method="increment" data-price="0">เส้นเล็ก</div>
-                <div class="noodle mu-readmore-btn" data-method="increment" data-price="0">เส้นใหญ่</div>
-                <div class="noodle mu-readmore-btn" data-method="increment" data-price="0">หมี่ขาว</div>
-                <div class="noodle mu-readmore-btn" data-method="increment" data-price="0">บะหมี่</div>
-                <div class="noodle mu-readmore-btn" data-method="increment" data-price="0">วุ้นเส้น</div>
-                <div class="noodle mu-readmore-btn" data-method="increment" data-price="0">มาม่า</div>
+                @foreach($noodle as $n)
+                  <div class="noodle mu-readmore-btn" data-method="{{ $n->traits }}" data-price="{{ $n->price }}">{{ $n->description }}</div>
+                @endforeach
+                @if(count($noodle) < 7)
+                  @for($i=1; $i<=(7-count($noodle)); $i++)
+                    <div class="other mu-readmore-btn-disable" data-method="increment" data-price="0"></div>
+                  @endfor
+                @endif
               </div>
               <div class="row" id=".soup" data-describe="เลือกน้ำซุป" data-mustselect="true" data-type="select">
                 <!-- <h3>เลือกน้ำซุป</h3> -->
-                <div class="soup mu-readmore-btn" data-method="increment" data-price="30">ต้มยำน้ำข้น</div>
-                <div class="soup mu-readmore-btn" data-method="increment" data-price="20">ต้มยำน้ำใส</div>
-                <div class="soup mu-readmore-btn" data-method="increment" data-price="20">น้ำใส</div>
-                <div class="soup mu-readmore-btn" data-method="increment" data-price="20">เย็นตาโฟ</div>
-                <div class="soup mu-readmore-btn" data-method="increment" data-price="20">ต้มยำแห้ง</div>
-                <div class="soup mu-readmore-btn" data-method="increment" data-price="20">แห้ง</div>
+                @foreach($soup as $s)
+                  <div class="soup mu-readmore-btn" data-method="{{ $s->traits }}" data-price="{{ $s->price }}">{{ $s->description }}</div>
+                @endforeach
+                @if(count($soup) < 7)
+                  @for($i=1; $i<=(7-count($soup)); $i++)
+                    <div class="other mu-readmore-btn-disable" data-method="increment" data-price="0"></div>
+                  @endfor
+                @endif
               </div>
-              <div class="row" id=".topping" data-describe="เลือกท็อปปิง (เลือกได้หลายรายการ)" data-mustselect="true" data-type="choice">
+              <div class="row" id=".topping" data-describe="เลือกท็อปปิง (เลือกได้หลายรายการ)" data-mustselect="false" data-type="choice">
                 <!-- <h3>เลือกท็อปปิง (เลือกได้หลายรายการ)</h3> -->
-                <div class="topping mu-readmore-btn" data-method="increment" data-price="0">ลูกชิ้นไก่</div>
-                <div class="topping mu-readmore-btn" data-method="increment" data-price="0">ลูกชิ้นปลา</div>
-                <div class="topping mu-readmore-btn" data-method="increment" data-price="0">เกี๊ยว</div>
-                <div class="topping mu-readmore-btn" data-method="increment" data-price="0">หมูสับ</div>
-                <div class="topping mu-readmore-btn" data-method="increment" data-price="0">ไข่ล้วน</div>
-                <div class="topping mu-readmore-btn-disable" data-method="increment" data-price="0"></div>
+                @foreach($topping as $t)
+                  <div class="topping mu-readmore-btn" data-method="{{ $t->traits }}" data-price="{{ $t->price }}">{{ $t->description }}</div>
+                @endforeach
+                @if(count($topping) < 7)
+                  @for($i=1; $i<=(7-count($topping)); $i++)
+                    <div class="other mu-readmore-btn-disable" data-method="increment" data-price="0"></div>
+                  @endfor
+                @endif
               </div>
               <div class="row" id=".other" data-describe="คุณสมบัติอื่นๆ (เลือกได้หลายรายการ)" data-mustselect="false" data-type="choice">
                 <!-- <h3>คุณสมบัติอื่นๆ (เลือกได้หลายรายการ)</h3> -->
-                <div class="other mu-readmore-btn" data-method="increment" data-price="0">ไม่ใส่ผัก</div>
-                <div class="other mu-readmore-btn" data-method="increment" data-price="5">เพิ่มไข่ ฿5</div>
-                <div class="other mu-readmore-btn" data-method="replacement" data-price="30">ยกทัพ ฿30</div>
-                <div class="other mu-readmore-btn" data-method="additional" data-price="5">พิเศษ ฿5</div>
-                <div class="other mu-readmore-btn-disable" data-method="increment" data-price="0"></div>
-                <div class="other mu-readmore-btn-disable" data-method="increment" data-price="0"></div>
+                @foreach($other as $o)
+                  <div class="other mu-readmore-btn" data-method="{{ $o->traits }}" data-price="{{ $o->price }}">{{ $o->description }}</div>
+                @endforeach
+                @if(count($other) < 7)
+                  @for($i=1; $i<=(7-count($other)); $i++)
+                    <div class="other mu-readmore-btn-disable" data-method="increment" data-price="0"></div>
+                  @endfor
+                @endif
               </div>
               <!-- <div class="row" id=".extra" data-describe="พิเศษ" data-mustselect="false" data-type="select">
                 <h3>พิเศษ</h3>

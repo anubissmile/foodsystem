@@ -34,7 +34,7 @@ class MakeOrderTransactions extends Controller
     		if($result){
     			$ds = [
     				'status' => $result,
-    				'describe' => 'การสั่งอาหารเรียบร้อยแล้ว',
+    				'describe' => 'สั่งอาหารเรียบร้อยแล้ว',
     			];
     		}else{
     			$ds = [

@@ -32,6 +32,7 @@
 #ERROR  PAGE
 #FOOTER SECTION
 #RESPONSIVE DESIGN
+#POPUP
 */
 /* BASE - Base tyles, Variables, Mixins, etc. */
 body {
@@ -42,10 +43,17 @@ body {
   overflow-x: hidden;
 }
 
+.set-popup-msg{
+  text-align:center;
+  font-size:2em;
+}
+
+.wrap-form-ingredient{
+  text-align:center;
+}
 
 .louse-input{
   font-size: 25px;
-  width: 40%;
   border: 1px solid #8a6d3b;
   position:relative;
   margin:5px 5px 5px 5px;
@@ -54,11 +62,11 @@ body {
 .louse-input:focus{
   border: 2px solid #8a6d3b;
   outline:none;
+  transition: all 0.5s;
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
   -ms-transition: all 0.5s;
   -o-transition: all 0.5s;
-  transition: all 0.5s;
 }
 
 .normal-table{
@@ -151,7 +159,7 @@ body {
   font-size: 21px;
   padding: 0.5% 5px 5px 5px;
   margin: 4px 1px 1px 5px;
-  width: 442px;
+  width: 594px;
   height: 115px;
 }
 
@@ -281,7 +289,7 @@ img {
 }
 
 .mu-send-btn {
-  background-color: transparent;
+  background-color: #E9D8AE;
   font-family: "Kanit", "Open Sans", sans-serif;
   border: 1px solid #ccc;
   display: inline-block;
@@ -739,7 +747,7 @@ img {
   display: inline;
   float: left;
   width: 100%;
-  padding: 100px 0;
+  padding: 30px 0;
 }
 #mu-restaurant-menu .mu-restaurant-menu-area {
   display: inline;
@@ -2887,3 +2895,100 @@ RESERVATION SECTION
     border-right: none;
   }
 }
+
+/*==================
+        POPUP
+====================*/
+
+.bgpopup{
+  background:url(assets/img/components/bgpopup.png);
+  position:fixed;
+  width:100%;
+  height:105%;
+  z-index:100;
+  overflow:auto;
+  display:none;
+} 
+  .content-popup{
+    position:absolute;
+    height:auto;
+    margin:6% 1.5% 2% 1.5%;
+    width:95%;
+    word-wrap:break-word;
+    height:80% auto;
+    padding:15px 15px 15px 15px;
+    background-color:white;
+    -webkit-border-top-right-radius: 10px;
+    -moz-border-radius-topright: 10px;
+    border-top-right-radius: 10px;
+    -webkit-border-top-left-radius: 10px;
+    -moz-border-radius-topleft: 10px;
+    border-top-left-radius: 10px;   
+    -webkit-border-bottom-right-radius: 10px;
+    -moz-border-radius-bottomright: 10px;
+    border-bottom-right-radius: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+    -moz-border-radius-bottomleft: 10px;
+    border-bottom-left-radius: 10px;
+  }
+
+  .loading{
+    position:absolute;
+    text-align:center;
+    vertical-align:central;
+    width:24px;
+    height:24px;
+    margin:auto auto;
+    background-color:none;
+  }
+  
+  .loadingbox{
+    width:24px;
+    height:24px;
+    margin:auto auto;
+    background-color:none;
+  }
+  
+  .img_del{
+    float:right;
+    margin:-30px -25px 0px 0px;
+  }
+
+  #spin25s, .spin25s{
+    position:absolute;
+    -webkit-animation:spin 2500ms infinite linear;
+    -moz-animation:spin 2500ms infinite linear; 
+    -ms-animation:spin 2500ms infinite linear;
+    -o-animation:spin 2500ms infinite linear;
+  }
+
+  @-webkit-keyframes spin{
+    from{
+      -webkit-transform:rotate(0deg); 
+    } 
+    to{
+      -webkit-transform:rotate(360deg); 
+    }
+  }
+  @-moz-keyframes spin{
+    from{
+      -moz-transform:rotate(0deg);  
+    } to {
+      -moz-transform:rotate(360deg);  
+    }
+  }
+  @-ms-keyframes spin{
+    from{
+      -ms-transform:rotate(0deg); 
+    } to {
+      -ms-transform:rotate(360deg); 
+    }
+  }
+  @-o-keyframes spin{
+    from{
+      -o-transform:rotate(0deg);  
+    } to {
+      -o-transform:rotate(360deg);  
+    }
+  }
+  

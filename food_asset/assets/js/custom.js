@@ -21,6 +21,7 @@
   11. HOVER DROPDOWN MENU
   12. SCROLL TOP BUTTON
   13. PRELOADER  
+  14. POPUP
 
   
 **/
@@ -256,14 +257,171 @@ jQuery(function($){
       orderTask();
       makeLink();
       allOrderListener();
+      cancelIngredient();
+      setInterval(function(){ fetchingNewOrder(); }, 5000);
    });
 
   
 });
 
+  /* ----------------------------------------------------------- */
+  /*  14. POPUP
+  /* ----------------------------------------------------------- */
+
+
+  function nowLoading(Obj,success){
+    Obj.load("resources/views/spicy/components/loading.blade.php",function(){
+      success();
+    });
+  }
+
+  function showContent(path,isLock){  
+    popup_close();
+    nowLoading($(".content-popup"),function(){
+      $(".content-popup").load(path); 
+    });
+    $(".bgpopup").fadeIn(1200,function(){
+      $(this).css("display","block"); 
+      if(isLock != true){
+        img_del_listener(isLock);
+      }
+    });
+    //popup_listener(isLock); //comment ไว้ก่อนเพราะว่า เวลาเปลี่ยนหน้า showContent แล้วมันหายไปเอง
+    if(isLock != true){
+      $(document).bind('keydown',function(e){
+        if(e.which == 27){
+          popup_close($('.bgpopup'));
+        }
+      });
+    }
+    return false;
+  }
+  
+  function img_del_listener(isLock){
+    $('.content-popup').prepend('<img id="img_del" title="[Esc] to Close." src="food_asset/assets/img/components/delete.png" />');
+    $('#img_del').addClass('img_del')
+      .bind('click',function(){
+      popup_close();            
+    });
+    return false;
+  }
+  
+  function showNote(msg,isLocks){
+    popup_close();
+    nowLoading($(".content-popup"),function(){
+      $(".content-popup").html(msg);
+    });
+    $(".bgpopup").fadeIn(1200,function(){
+      $(this).css("display","block");
+      if(isLocks != true){
+        img_del_listener(isLocks);
+      }
+    });
+    
+    //popup_listener(isLock);
+    if(isLocks != true){
+      $(document).bind('keydown',function(e){
+        if(e.which == 27){
+          popup_close($('.bgpopup'));
+        }
+      });
+    }
+    return false;
+  }
+  
+  function popup_close(obj){
+    $('.content-popup').undelegate('click');
+    $('.bgpopup').fadeOut(100,function(){
+      $(this).css("display","none");  
+      $('#img_del').unbind('click');
+      return false;
+    });
+    $(document).unbind('keydown');
+    return false;
+  }
+
+/////////////////////////////////////////////////////////////////
+
+function fetchingNewOrder(){
+  var csrf = $("#csrf").val();
+  $.ajax({
+    url : "fetch/new-orders",
+    type : "post",
+    dataType : "json",
+    data : {
+      '_token' : csrf
+    },
+    success : function(xhr, status, data){
+      console.log(xhr);
+      if(status === 'success'){
+        if(xhr.code){
+          var html = code = amount = list = "";
+          for(i=0;i<=xhr.data.length;i++){
+            code = xhr.data[i].code;
+            amount = xhr.data[i].amount;
+            list = xhr.data[i].list;
+            html = '<tr class="'+code+'">';
+            html +=   '<td>' + list + '</td>';
+            html +=   '<td>' + amount + '</td>';
+            html +=   '<td><button class="order-action small-btn bg-green" data-code="' + code + '"data-action="complete"><span class="glyphicon glyphicon-ok"></span></button></td>';
+            html +=   '<td><button class="order-action small-btn bg-red" data-code="' + code + '" data-action="abort"><span class="glyphicon glyphicon-remove"></span></button></td></tr>';
+            $(html).appendTo('.body-all-orders').hide().fadeIn('slow');
+            $('.order-action').unbind('click');
+            allOrderListener();
+          }
+        }
+      }
+    },
+    error : function(xhr, status, data){
+      console.log(xhr);
+      console.log(status);
+      console.log(data.responseText);
+    }
+  });
+}
+
+function cancelIngredient(){
+  $('.cancel-ingredient').click(function(event) {
+    var round = $(this).attr('data-code');
+    var type = $(this).attr('data-type');
+
+    switch(type){
+      case 'noodle':
+        $("#"+type+round).val("").attr("placeholder","เพิ่มส่วนประกอบอาหาร");
+        $("#nprice"+round).val(0);
+        $("#rnreplacement"+round).prop("checked", false);
+        $("#rnadditional"+round).prop("checked", false);
+        $("#rnincrement"+round).prop("checked", true);
+        break;
+      case 'soup':
+        $("#"+type+round).val("").attr("placeholder","เพิ่มส่วนประกอบอาหาร");
+        $("#sprice"+round).val(0);
+        $("#rsincrement"+round).prop("checked", true);
+        $("#rsreplacement"+round).prop("checked", false);
+        $("#rsadditional"+round).prop("checked", false);
+        break;
+      case 'topping':
+        $("#"+type+round).val("").attr("placeholder","เพิ่มส่วนประกอบอาหาร");
+        $("#tprice"+round).val(0);
+        $("#rtincrement"+round).prop("checked", true);
+        $("#rtreplacement"+round).prop("checked", false);
+        $("#rtadditional"+round).prop("checked", false);
+        break;
+      case 'other':
+        $("#"+type+round).val("").attr("placeholder","เพิ่มส่วนประกอบอาหาร");
+        $("#oprice"+round).val(0);
+        $("#roincrement"+round).prop("checked", true);
+        $("#roreplacement"+round).prop("checked", false);
+        $("#roadditional"+round).prop("checked", false);
+        break;
+    }    
+    return false;
+  });
+}
+
 function allOrderListener(){
 
-  $('.order-action').click(function(){
+  $('.order-action').bind('click', function(){
     if(confirm("ยืนยันรายการอีกครั้ง")){
 
       var token = $("#csrf").val();
@@ -291,8 +449,8 @@ function allOrderListener(){
           }
         },
         error : function(xhr,status,data){
-          alert(status);
-          alert(data.responseText);
+          // alert(status);
+          // alert(data.responseText);
         }
       });
 
@@ -328,10 +486,9 @@ function setLabelPrice(price,amount,sum,summary){
       // summary += "| " + " ราคา" + sum + " ฿";
     }
   });
+  
 
-  if(summary != ""){
-    $("#lb-result").html(summary);
-  }
+  $("#lb-result").html(summary);
   return summary;
 }
 
@@ -359,7 +516,7 @@ function orderTask(){
   summary = setLabelPrice(price,amount,sum,summary);
 
   $("#cancel").click(function(event) {
-    pNoodle = pSoup = pTopping = pOther = pExtra = oldPrice = sum = price = 0;
+    pNoodle = pSoup = pTopping = pOther = pExtra = oldPrice = sum = price = ext = increment = replacement = 0;
     summary = "";
     active = {".noodle":0, ".soup":0, ".topping":0, ".other":0, ".extra":0};
     amount = 1;
@@ -380,11 +537,14 @@ function orderTask(){
       s = $(this).attr("id");
 
       if(active[s] == 0){
-        str += "  " + $(this).attr("data-describe") + "\n";
+        str += "  " + $(this).attr("data-describe") + "<br/>";
       }
     });
     if(str != ""){
-      alert("คุณจำเป็นต้องเลือกรายการเหล่านี้\n" + str);
+      // alert("คุณจำเป็นต้องเลือกรายการเหล่านี้\n" + str);
+      var msg = '<div class="set-popup-msg">' + "คุณจำเป็นต้องเลือกรายการเหล่านี้<br/>" + str + '</div>';
+      showNote(msg, true);
+      setTimeout(function(){popup_close();}, 2000);
     }else{
 
       /**
@@ -409,12 +569,17 @@ function orderTask(){
           alert("On Success " + data.responseText);
           alert("On Success " + status);*/
           if(status = 'success'){
-            alert(xhr.describe);
+            // alert(xhr.describe);
+            var msg = '<div class="set-popup-msg">' + xhr.describe + '</div>';
+            showNote(msg, true);
+            setTimeout(function(){popup_close();}, 1800);
             $("#cancel").click();
             $('html, body').animate({
                   scrollTop: $("#mu-make-order").offset().top
             }, 2000);
           }
+          
+          // $('#cancel').click();
         },
         error : function(xhr,status,data){
           /*alert("On Success " + xhr.sss);
@@ -422,10 +587,10 @@ function orderTask(){
           alert("On Success " + status);*/
           // alert(status);
           location.reload();
+          $('#cancel').click();
         }
       });
     }
-
   });
   
   $('#plus').click(function(event) {

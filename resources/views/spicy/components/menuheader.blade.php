@@ -20,9 +20,10 @@
             @if(Auth::check())
               <li><a href="#mu-all-order">ALL ORDER</a></li>
               <li><a href="#mu-daily-sales">DAILY SALES</a></li>
+              <li><a href="#mu-restaurant-menu">MANAGE ITEM</a></li>
             @endif
             <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="blog-archive.html">PAGE <span class="caret"></span></a>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="blog-archive.html">USER <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">                
                 <!-- <li><a href="blog-archive.html">BLOG</a></li>
                           <li><a href="blog-single.html">BLOG DETAILS</a></li>

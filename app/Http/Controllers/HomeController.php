@@ -14,6 +14,7 @@ use DB;
 use App;
 use Wesarut;
 use PDF;
+use App\Ingredient;
 
 class HomeController extends Controller{
 
@@ -36,9 +37,37 @@ class HomeController extends Controller{
 	    	////////////////////////////////////////////////////////////////////////////////
 
     	}
+
+        /**
+         * FETCH INGREDIENTS.
+         */
+        // NOODLE
+        $noodle = Ingredient::where('type', 'noodle')
+            ->orderBy('id', 'asc')
+            ->take(7)->get();
+        // SOUP
+        $soup = Ingredient::where('type', 'soup')
+            ->orderBy('id', 'asc')
+            ->take(7)->get();
+        // TOPPING
+        $topping = Ingredient::where('type', 'topping')
+            ->orderBy('id', 'asc')
+            ->take(7)->get();
+        // OTHER
+        $other = Ingredient::where('type', 'other')
+            ->orderBy('id', 'asc')
+            ->take(7)->get();
+
+        /**
+         * RETURNING TO THE VIEW.
+         */
     	return view('spicy.welcome', [
-		'title' => "Welcome to Noodlepark.",
-		'orders' => $allOrder
+    		'title' => "Welcome to Noodlepark.",
+    		'orders' => $allOrder,
+            'noodle' => $noodle,
+            'soup' => $soup,
+            'topping' => $topping,
+            'other' => $other
 		]);
 
     }
@@ -150,6 +179,130 @@ class HomeController extends Controller{
             return $pdf->stream();
         }else{
             return "การดำเนินการมีบางอย่างผิดพลาด โปรดลองใหม่อีกครั้ง!";
+        }
+    }
+
+    public function manageIngredient(Request $request){
+
+        /**
+         * SETTING DATA SET & VARIABLE.
+         */
+        $ds = [
+            'errStatus' => true,
+            'errDescription' => ''
+        ];
+
+        $prefixradio = $prefix = '';
+        $type = $request->type;
+
+        /**
+         * CHECKING TYPE OF INGREDIENT.
+         */
+        switch ($type) {
+            case 'noodle':
+                $prefixradio = 'rn';
+                $prefix = 'n';
+                break;
+            case 'soup':
+                $prefixradio = 'rs';
+                $prefix = 's';
+                break;
+            case 'topping':
+                $prefixradio = 'rt';
+                $prefix = 't';
+                break;
+            case 'other':
+                $prefixradio = 'ro';
+                $prefix = 'o';
+                break;
+            default:
+                $ds['errStatus'] = false;
+                $ds['errDescription'] = "ประเภทส่วนประกอบอาหารไม่ถูกต้อง";
+                break;
+        }
+
+        /**
+         * LOOPING FOR EACH ID.
+         */
+        for($i=1;$i<=7;$i++){
+            $id = $request->input("rec_id$i");
+            $description = $request->input($type.$i);
+            $price = $request->input($prefix."price$i");
+            $traits = $request->input($prefixradio.$i);
+
+            /**
+             * EXECUTE (INSERT, UPDATE, DELETE)
+             */
+            if($description != "" && $id == 'none'){
+                /**
+                 * INSERT.
+                 */
+                $result = Ingredient::insert([
+                    'description' => $description,
+                    'price' => $price,
+                    'traits' => $traits,
+                    'type' => $type,
+                    'create_date' => date('Y-m-d'),
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s')
+                ]);
+            }else if($description != "" && $id != "none"){
+                /**
+                 * UPDATE.
+                 */
+                $ing = Ingredient::find($id);
+                $ing->description = $description;
+                $ing->price = $price;
+                $ing->traits = $traits;
+                $result = $ing->save();
+            }else if($description == "" && $id != "none"){
+                /**
+                 * DELETE.
+                 */
+                $result = Ingredient::where('id', $id)->delete();
+            }
+
+        }
+        if(!$result){
+            echo "การดำเนินการผิดพลาดโปรดลองใหม่อีกครั้ง";
+            sleep(2);
+        }
+        return redirect('/');
+
+    }
+
+    public function fetchingNewOrder(Request $request){
+        if($request->ajax()){
+            $today = date("Y-m-d");
+            
+            $allOrder = DB::table('tb_order_transaction')
+                ->where([
+                    ['create_date', $today],
+                    ['status', 'order']
+                ])
+                ->orderBy('created_at', 'asc')
+                ->get();
+            $result = DB::table('tb_order_transaction')
+                ->where([
+                    ['create_date', $today],
+                    ['status', 'order']
+                ])
+                ->update(['status' => 'wait']);
+            
+            if($result){
+                $ds = [
+                    'description' => "success",
+                    'code' => true,
+                    'data' => $allOrder
+                ];
+            }else{
+                $ds = [
+                    'description' => "เปลียนสถานะข้อมูลผิดพลาด",
+                    'code' => false
+                ];
+            }
+
+            return json_encode($ds);
         }
     }
 }
