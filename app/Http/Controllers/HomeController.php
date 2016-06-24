@@ -271,4 +271,38 @@ class HomeController extends Controller{
 
     }
 
+    public function fetchingNewOrder(Request $request){
+        if($request->ajax()){
+            $today = date("Y-m-d");
+            
+            $allOrder = DB::table('tb_order_transaction')
+                ->where([
+                    ['create_date', $today],
+                    ['status', 'order']
+                ])
+                ->orderBy('created_at', 'asc')
+                ->get();
+            $result = DB::table('tb_order_transaction')
+                ->where([
+                    ['create_date', $today],
+                    ['status', 'order']
+                ])
+                ->update(['status' => 'wait']);
+            
+            if($result){
+                $ds = [
+                    'description' => "success",
+                    'code' => true,
+                    'data' => $allOrder
+                ];
+            }else{
+                $ds = [
+                    'description' => "เปลียนสถานะข้อมูลผิดพลาด",
+                    'code' => false
+                ];
+            }
+
+            return json_encode($ds);
+        }
+    }
 }

@@ -67,6 +67,7 @@ Route::get('man.men', function(){
 
 Route::post('make/orders', "Order\MakeOrderTransactions@createTransaction");
 Route::post('complete/orders', "HomeController@completeOrders");
+Route::any('fetch/new-orders', "HomeController@fetchingNewOrder");
 
 //////////////////////////////////////////////////////////////////////////////
 

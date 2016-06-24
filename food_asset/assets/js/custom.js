@@ -258,6 +258,7 @@ jQuery(function($){
       makeLink();
       allOrderListener();
       cancelIngredient();
+      setInterval(function(){ fetchingNewOrder(); }, 5000);
    });
 
   
@@ -341,6 +342,43 @@ jQuery(function($){
 
 /////////////////////////////////////////////////////////////////
 
+function fetchingNewOrder(){
+  var csrf = $("#csrf").val();
+  $.ajax({
+    url : "fetch/new-orders",
+    type : "post",
+    dataType : "json",
+    data : {
+      '_token' : csrf
+    },
+    success : function(xhr, status, data){
+      console.log(xhr);
+      if(status === 'success'){
+        if(xhr.code){
+          var html = code = amount = list = "";
+          for(i=0;i<=xhr.data.length;i++){
+            code = xhr.data[i].code;
+            amount = xhr.data[i].amount;
+            list = xhr.data[i].list;
+            html = '<tr class="'+code+'">';
+            html +=   '<td>' + list + '</td>';
+            html +=   '<td>' + amount + '</td>';
+            html +=   '<td><button class="order-action small-btn bg-green" data-code="' + code + '"data-action="complete"><span class="glyphicon glyphicon-ok"></span></button></td>';
+            html +=   '<td><button class="order-action small-btn bg-red" data-code="' + code + '" data-action="abort"><span class="glyphicon glyphicon-remove"></span></button></td></tr>';
+            $(html).appendTo('.body-all-orders').hide().fadeIn('slow');
+            $('.order-action').unbind('click');
+            allOrderListener();
+          }
+        }
+      }
+    },
+    error : function(xhr, status, data){
+      console.log(xhr);
+      console.log(status);
+      console.log(data.responseText);
+    }
+  });
+}
 
 function cancelIngredient(){
   $('.cancel-ingredient').click(function(event) {
@@ -383,7 +421,7 @@ function cancelIngredient(){
 
 function allOrderListener(){
 
-  $('.order-action').click(function(){
+  $('.order-action').bind('click', function(){
     if(confirm("ยืนยันรายการอีกครั้ง")){
 
       var token = $("#csrf").val();
@@ -411,8 +449,8 @@ function allOrderListener(){
           }
         },
         error : function(xhr,status,data){
-          alert(status);
-          alert(data.responseText);
+          // alert(status);
+          // alert(data.responseText);
         }
       });
 
