@@ -27,16 +27,17 @@
                     <tr>
                       <td id="td-list" 
                         data-count="{{count($orders)}}">{{count($orders)}} รายการ</td>
-                      <td id="td-amount">จำนวน (ชาม)</td>
+                      <td id="td-amount">ชามที่</td>
                       <td id="td-complete" class="head-active">เสิร์ฟ</td>
                       <td id="td-cancel" class="head-active">ยกเลิก</td>
                     </tr>
                   </thead>
                   <tbody class="body-all-orders">
                   @foreach($orders as $order)
+                    {{--*/ $counts++; /*--}}
                     <tr class="{{$order->code}}">
                       <td>{{$order->list}}</td>
-                      <td>{{$order->amount}}</td>
+                      <td>{{$counts}}</td>
                       <td>
                         <button class="order-action small-btn bg-green" 
                           data-code="{{$order->code}}"

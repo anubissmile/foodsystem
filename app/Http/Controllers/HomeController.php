@@ -34,6 +34,12 @@ class HomeController extends Controller{
 	    		->orderBy('created_at', 'asc')
 	    		->get();
 
+            $allOrderCount = DB::table('tb_order_transaction')
+                ->where([
+                    ['create_date', $today]
+                ])->count();
+            $allOrderCount = $allOrderCount - count($allOrder); 
+
 	    	////////////////////////////////////////////////////////////////////////////////
 
     	}
@@ -64,6 +70,7 @@ class HomeController extends Controller{
     	return view('spicy.welcome', [
     		'title' => "Welcome to Noodlepark.",
     		'orders' => $allOrder,
+            'counts' => $allOrderCount,
             'noodle' => $noodle,
             'soup' => $soup,
             'topping' => $topping,
@@ -282,6 +289,13 @@ class HomeController extends Controller{
                 ])
                 ->orderBy('created_at', 'asc')
                 ->get();
+            $allOrderCount = DB::table('tb_order_transaction')
+                ->where([
+                    ['create_date', $today]
+                ])->count();
+
+            $allOrderCount = $allOrderCount - count($allOrder);
+
             $result = DB::table('tb_order_transaction')
                 ->where([
                     ['create_date', $today],
@@ -293,7 +307,8 @@ class HomeController extends Controller{
                 $ds = [
                     'description' => "success",
                     'code' => true,
-                    'data' => $allOrder
+                    'data' => $allOrder,
+                    'counts' => $allOrderCount
                 ];
             }else{
                 $ds = [

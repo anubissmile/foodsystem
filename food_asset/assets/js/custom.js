@@ -356,13 +356,15 @@ function fetchingNewOrder(){
       if(status === 'success'){
         if(xhr.code){
           var html = code = amount = list = "";
+          var count = xhr.counts;
           for(i=0;i<=xhr.data.length;i++){
             code = xhr.data[i].code;
             amount = xhr.data[i].amount;
             list = xhr.data[i].list;
+            count++;
             html = '<tr class="'+code+'">';
             html +=   '<td>' + list + '</td>';
-            html +=   '<td>' + amount + '</td>';
+            html +=   '<td>' + count + '</td>';
             html +=   '<td><button class="order-action small-btn bg-green" data-code="' + code + '"data-action="complete"><span class="glyphicon glyphicon-ok"></span></button></td>';
             html +=   '<td><button class="order-action small-btn bg-red" data-code="' + code + '" data-action="abort"><span class="glyphicon glyphicon-remove"></span></button></td></tr>';
             $(html).appendTo('.body-all-orders').hide().fadeIn('slow');
